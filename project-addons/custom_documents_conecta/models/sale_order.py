@@ -10,5 +10,5 @@ class SaleOrderLine(models.Model):
         if self.product_id:
             name += self.product_id.name
             if self.product_id.description_sale:
-                    name += '\n' + self.description_sale
+                    name += '\n' + self.product_id.description_sale
         return name    
