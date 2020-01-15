@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-03 00:11+0000\n"
-"PO-Revision-Date: 2020-01-03 00:11+0000\n"
+"POT-Creation-Date: 2020-01-15 16:45+0000\n"
+"PO-Revision-Date: 2020-01-15 16:45+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -110,6 +110,11 @@ msgstr "Condición"
 #: model_terms:ir.ui.view,arch_db:custom_sla.contract_line_search_view
 msgid "Contract"
 msgstr "Contrato"
+
+#. module: custom_sla
+#: model:ir.model,name:custom_sla.model_contract_line
+msgid "Contract Line"
+msgstr "Línea de contrato"
 
 #. module: custom_sla
 #: model:ir.actions.act_window,name:custom_sla.action_contract_lines
@@ -326,6 +331,12 @@ msgstr "No procede"
 #: model:ir.model.fields,field_description:custom_sla.field_project_task__notice_person
 msgid "Notice person"
 msgstr "Persona de aviso"
+
+#. module: custom_sla
+#: model:ir.model.fields,field_description:custom_sla.field_contract_line__partner_id
+#: model_terms:ir.ui.view,arch_db:custom_sla.contract_line_search_view
+msgid "Partner"
+msgstr "Empresa"
 
 #. module: custom_sla
 #: model:ir.model.fields,field_description:custom_sla.field_project_task__priority

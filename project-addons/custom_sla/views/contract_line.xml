@@ -10,6 +10,7 @@
                   decoration-info="create_invoice_visibility and not is_canceled">
                 <field name="sequence" widget="handle"/>
                 <field name="contract_id"/>
+                <field name="partner_id"/>
                 <field name="product_id"/>
                 <field name="name"/>
                 <!-- <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/> -->
@@ -88,6 +89,7 @@
     <field name="model">contract.line</field>
     <field name="arch" type="xml">
         <search>
+            <field name="partner_id"/>
             <field name="contract_id"/>
             <field name="date_start"/>
             <field name="date_end"/>
@@ -112,6 +114,9 @@
                     domain="[('qty_type', '=', 'variable')]"
             />
             <group expand="0" string="Group By...">
+                <filter name="partner_groupby"
+                        string="Partner"
+                        context="{'group_by': 'contract_id'}"/>
                 <filter name="contract_groupby"
                         string="Contract"
                         context="{'group_by': 'contract_id'}"/>
@@ -146,9 +151,14 @@
         <header position="inside">
             <field name="state" widget="statusbar"/>
         </header>
+
+        <field name="product_id" position="after">
+            <field name="contract_id"/>
+            <field name="partner_id"/>
+        </field>
+
         <group name="recurrence_info" position="inside">
             <group>
-                <field name="contract_id"/>
                 <field name="create_invoice_visibility" invisible="1"/>
                 <field name="date_start" required="1"/>
                 <field name="next_period_date_start"/>
@@ -193,12 +203,24 @@
     </field> -->
     <field name="search_view_id" ref="contract_line_search_view"/>
     <field name="view_id" ref="custom_contract_line_tree_view"/>
-    <field name="form_view_id" ref="custom_contract_line_form_view"/>
     <!-- <field name="help" type="html">
         <p class="oe_view_nocontent_create">
             Click to create a new contract.
         </p>
     </field> -->
+</record>
+
+ <record id="action_view_contract_lines_form" model="ir.actions.act_window.view">
+    <field eval="2" name="sequence"/>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="custom_contract_line_form_view"/>
+    <field name="act_window_id" ref="action_contract_lines"/>
+</record>
+<record id="action_view_contract_lines_tree" model="ir.actions.act_window.view">
+    <field name="sequence" eval="1"/>
+    <field name="view_mode">tree</field>
+    <field name="view_id" ref="custom_contract_line_tree_view"/>
+    <field name="act_window_id" ref="action_contract_lines"/>
 </record>
 
 
