@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-26 09:16+0000\n"
-"PO-Revision-Date: 2019-12-26 09:16+0000\n"
+"POT-Creation-Date: 2020-01-17 09:38+0000\n"
+"PO-Revision-Date: 2020-01-17 09:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,13 +24,13 @@ msgstr "Aceptado"
 #: model:ir.model.fields,field_description:custom_conecta.field_res_partner__translate_cif
 #: model:ir.model.fields,field_description:custom_conecta.field_res_users__translate_cif
 msgid "Cif"
-msgstr "Cif"
+msgstr ""
 
 #. module: custom_conecta
 #: model:ir.model.fields,field_description:custom_conecta.field_res_partner__nima_translate
 #: model:ir.model.fields,field_description:custom_conecta.field_res_users__nima_translate
 msgid "Cod nima"
-msgstr "Cod nima"
+msgstr ""
 
 #. module: custom_conecta
 #: model:ir.model,name:custom_conecta.model_res_partner
@@ -140,21 +140,26 @@ msgid "Representant nif"
 msgstr "NIF representante"
 
 #. module: custom_conecta
+#: model:ir.model,name:custom_conecta.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: custom_conecta
 #: model:ir.model.fields,field_description:custom_conecta.field_res_partner__invoice_picking
 #: model:ir.model.fields,field_description:custom_conecta.field_res_users__invoice_picking
 msgid "Send invoice to customer when we do a picking for him"
 msgstr "Enviar factura al cliente cuando se hace un albarán en su nombre"
 
 #. module: custom_conecta
-#: model:ir.model,name:custom_conecta.model_project_task
-msgid "Task"
-msgstr "Tarea"
+#: model:ir.model.fields,field_description:custom_conecta.field_sale_order_line__supp_ref
+msgid "Supplier Reference"
+msgstr "Referencia proveedor"
 
 #. module: custom_conecta
 #: model:ir.model.fields,field_description:custom_conecta.field_product_product__waste_type
 #: model:ir.model.fields,field_description:custom_conecta.field_product_template__waste_type
 msgid "Tipo residuo"
-msgstr "Tipo residuo"
+msgstr ""
 
 #. module: custom_conecta
 #: selection:product.template,waste_type:0
