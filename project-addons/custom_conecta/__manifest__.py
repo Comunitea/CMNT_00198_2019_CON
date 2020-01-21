@@ -26,6 +26,7 @@
         'views/product_template_view.xml',
         'views/stock_picking_view.xml',
         'views/sale_order_view.xml',
+        'wizard/mail_compose_message_view.xml',
         ],
     'development_status': 'Beta',
     'maintainers': [
