@@ -42,7 +42,7 @@ def _parse_line(line):
 
 def get_line_vals(data, idx, contract=False):
     field_lines = []
-    product_id = False
+    product_id = 955  # FACTURACIÓN VARIABLE
     product = False
     if data.get('line_product_extid'):
         product = session.env.ref(data['line_product_extid'])
@@ -106,26 +106,26 @@ def get_line_vals(data, idx, contract=False):
     if not recurring_interval:
         logging.error('SIN RECURRING INTERVAL EN (LIN %s)' % (str(idx)))
     if not recurring_rule_type:
-        logging.error('SIN RECURRING INTERVAL EN (LIN %s)' % (tr(idx)))
+        logging.error('SIN RECURRING INTERVAL EN (LIN %s)' % (str(idx)))
     if not recurring_next_date:
         logging.error('SIN RECURRING NEXT DATE EN (LIN %s)' % (str(idx)))
     
-    qty_type = 'fixed'
 
     vals = {
         'product_id': product_id,
         'name': line_name,
-        'recurring_interval': recurring_interval,
-        'recurring_rule_type': recurring_rule_type,
+        'recurring_interval': 1,
+        'recurring_rule_type': 'monthly',
         'date_start': date_start,
         'date_end': date_end,
-        'recurring_next_date': recurring_next_date,
-        'qty_type': qty_type,
-        # 'qty_formula_id': qty_formula_id,
+        'recurring_next_date': recurring_next_date if recurring_next_date >= date_start else date_start,
+        'qty_type': 'variable',
+        'qty_formula_id': 1,
         'quantity': data.get('line_qty') or 0.0,
-        'uom_id': uom_id,
-        'price_unit': data.get('line_price') or 0.0,
-        'discount': data.get('line_discount') or 0.0,
+        'uom_id': 1,
+        'automatic_price': True
+        # 'price_unit': data.get('line_price') or 0.0,
+        # 'discount': data.get('line_discount') or 0.0,
 
     }
     field_lines = [(0, 0, vals)]
@@ -144,7 +144,9 @@ def get_contract_vals(data, idx):
         else:
             partner_id = 7630  # CLIENTE Sin Nombre
             logging.error('OBTENIENDO PARTNER %s EN (LIN %s)' % (data['partner_extid'], str(idx)))
-    
+    else:
+        partner_id = 7630  # CLIENTE Sin Nombre
+        logging.error('OBTENIENDO PARTNER %s EN (LIN %s)' % (data['partner_extid'], str(idx)))
     invoice_partner_id = False
     if data.get('partner_invoice_extid'):
         partner_invoice = False
@@ -227,6 +229,7 @@ def get_contract_vals(data, idx):
         'payment_mode_id': payment_mode_id,
         'payment_term_id': payment_term_id,
         'journal_id': journal_id,
+        'no_recurring': True
     }
     if invoice_partner_id:
         vals.update(invoice_partner_id=invoice_partner_id)
@@ -286,13 +289,13 @@ def create_contracts(contract_datas):
 
 import csv
 idx = 0
-f1 = open('/home/comunitea/conecta/scripts/CONTRATOS_CONECTA_RECURRENTES.csv', newline='\n')
-# f1 = open('/home/javier/buildouts/conecta/scripts/CONTRATOS_CONECTA_RECURRENTES.csv', newline='\n')
+f1 = open('/home/comunitea/conecta/scripts/CONTRATOS_CONECTA_NO_RECURRENTES.csv', newline='\n')
+# f1 = open('/home/javier/buildouts/conecta/scripts/CONTRATOS_CONECTA_NO_RECURRENTES.csv', newline='\n')
 lines2count= csv.reader(f1, delimiter=',', quotechar='"')
 row_count = sum(1 for row in lines2count)
 
-# with open('/home/javier/buildouts/conecta/scripts/CONTRATOS_CONECTA_RECURRENTES.csv', newline='\n') as csvfile:
-with open('/home/comunitea/conecta/scripts/CONTRATOS_CONECTA_RECURRENTES.csv', newline='\n') as csvfile:
+# with open('/home/javier/buildouts/conecta/scripts/CONTRATOS_CONECTA_NO_RECURRENTES.csv', newline='\n') as csvfile:
+with open('/home/comunitea/conecta/scripts/CONTRATOS_CONECTA_NO_RECURRENTES.csv', newline='\n') as csvfile:
     lines = csv.reader(csvfile, delimiter=',', quotechar='"')
     
     contract_datas = []
