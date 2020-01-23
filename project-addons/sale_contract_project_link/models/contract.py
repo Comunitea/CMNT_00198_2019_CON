@@ -123,6 +123,10 @@ class ContractContract(models.Model):
 class ContractLine(models.Model):
     _inherit = "contract.line"
 
+    last_date_invoiced = fields.Date(
+        string='Last Date Invoiced', readonly=True, copy=False
+    )
+
     @api.model
     def create(self, vals):
         res = super().create(vals)

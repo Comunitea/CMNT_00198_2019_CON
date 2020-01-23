@@ -113,7 +113,7 @@ def get_line_vals(data, idx, contract=False):
 
     vals = {
         'product_id': product_id,
-        'name': line_name,
+        'name': 'FACTURACIÓN VARIABLE',
         'recurring_interval': 1,
         'recurring_rule_type': 'monthly',
         'date_start': date_start,
