@@ -236,13 +236,32 @@ def create_contracts(contract_datas):
     idx = 1
     row_count = len(contract_datas) + 1
     created_contracts = session.env['contract.contract']
+    exists = False
+    num_skipped = 0
     for data in contract_datas:
         idx += 1
-        if idx == 201:
-            import ipdb; ipdb.set_trace()
+        # if idx == 201:
+        #     import ipdb; ipdb.set_trace()
         _logger.info('IMPORTANDO CONTRATO LÍNEA %s / %s' % (idx, row_count))
         ext_id = data.get('extid')
         cotract = False
+
+        # Si el contrato ya existe no lo reimporto, si es una línea
+        # de un contrato que ya existía tampoco lo importo
+        code = data.get('reference')
+        if code:
+            domain = [('code', '=', code)]
+            exist_contract = session.env['contract.contract'].search(domain)
+            if exist_contract:
+                exists = True
+                num_skipped += 1
+            else:
+                exists = False
+
+        if exists: # Si no hay código, puede ser una línea de un contrato que ya existía
+            _logger.info('ya existe. LO IGNORO %s / %s' % (idx, row_count))
+            continue
+
         if ext_id:
             vals = get_contract_vals(data, idx)
             contract = session.env['contract.contract'].create(vals)
@@ -254,9 +273,13 @@ def create_contracts(contract_datas):
             }]
             print(data)
             session.env['ir.model.data']._update_xmlids(data)
+            _logger.info('CONTRATO CREADO %s / %s' % (idx, row_count))
         else:
             line_vals = get_line_vals(data, idx, contract)
             contract.write({'contract_line_ids': line_vals})
+
+    num_created = len(created_contracts)
+    _logger.info('CONTRATOS CREADO %s / contratos saltados %s' % (num_created, num_skipped))
     created_contracts.link_project()
 
 
