@@ -35,7 +35,7 @@ class ContractVariableInvoicingWzd(models.TransientModel):
             
             # Actualizar solo la ultima fecha de factura a las que tienen 
             # factura asociada
-            contracts2update = self.env['account.invoice.line']
+            contracts2update = self.env['contract.contract']
             for contract in contracts:
                 if contract._get_related_invoices():
                     contracts2update += contract
