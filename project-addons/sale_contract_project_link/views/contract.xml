@@ -20,6 +20,7 @@
 
         <field name="contract_template_id" position="before">
             <field name="project_id" readonly="True"/>
+            <field name="no_recurring"/>
         </field>
 
         <notebook position="inside">
@@ -31,6 +32,18 @@
         </notebook>
 
         
+    </field>
+</record>
+
+<!-- contract.contract inherit search view -->
+<record id="custom_contract_contract_search_view " model="ir.ui.view">
+    <field name="name">custom_contract_contract_search_view</field>
+    <field name="model">contract.contract</field>
+    <field name="inherit_id" ref="contract.contract_contract_search_view"/>
+    <field name="arch" type="xml">
+        <filter name="not_finished" position="before">
+            <filter string="Not Recurring" domain="[('no_recurring', '=', True)]" name="no_recurring"/>
+        </filter>
     </field>
 </record>
 

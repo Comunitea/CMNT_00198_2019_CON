@@ -20,6 +20,8 @@ class ContractContract(models.Model):
         compute='_compute_task_issue_count', string="Task Count")
     description = fields.Text('Description')
 
+    no_recurring = fields.Boolean('Not recurring')
+
     # No facturar líneas a 0 marcado por defecto
     skip_zero_qty = fields.Boolean(default=True)
 
