@@ -200,8 +200,9 @@ class ContractLine(models.Model):
         OVERWRITE para ignorar las líneas que vienen de facturación manual.
         Ya las actualizo yo manualmente
         """
-        return super()
         for rec in self:
+            if rec.contract_id.no_recurring:
+                continue
             last_date_invoiced = rec.next_period_date_end
             recurring_next_date = rec.get_next_invoice_date(
                 last_date_invoiced + relativedelta(days=1),
