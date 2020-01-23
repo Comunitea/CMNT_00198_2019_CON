@@ -3,6 +3,7 @@
 
 from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError
+import datetime
 
 
 class ContractContract(models.Model):
@@ -96,6 +97,27 @@ class ContractContract(models.Model):
                 invoices |= self.env['account.invoice'].browse(invoice_ids)[:1]
 
         return invoices
+    
+    @api.model
+    def _get_contracts_to_invoice_domain(self, date_ref=None):
+        """
+        SOBREESCRITO PARA PERSONALIZAR EL DOMAIN DE BUSQUEDA DEL CRON
+        """
+        domain = []
+        if not date_ref:
+            date_ref = fields.Date.context_today(self)
+
+            param = self.env.ref(
+                'sale_contract_project_link.contract_invoice_days_before')
+            if param and param.value:
+                days = int(param.value)
+                date_ref = date_ref + datetime.timedelta(days=days)
+
+        domain.extend([
+            ('recurring_next_date', '<=', date_ref),
+            ('not_recurring', '=', False),
+        ])
+        return domain
 
 
 class ContractLine(models.Model):

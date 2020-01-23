@@ -12,6 +12,7 @@
     'depends': ['sale_timesheet', 'product_contract', 'project'],
     'data': [
         'security/ir.model.access.csv',
+        'data/config_contract.xml',
         'views/project_task_view.xml',
         'views/project_view.xml',
         'views/contract.xml',

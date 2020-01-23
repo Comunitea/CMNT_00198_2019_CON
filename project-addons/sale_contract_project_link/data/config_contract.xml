@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<odoo>
+     <data noupdate="1">
+
+        <record id="contract_invoice_days_before"  model="ir.config_parameter">
+            <field name="key">contract.invoice.days.before</field>
+            <field name="value">3</field>
+        </record>
+
+    </data>
+</odoo>
