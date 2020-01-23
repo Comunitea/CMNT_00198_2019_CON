@@ -9,7 +9,9 @@
     'author': 'Comunitea, '
               'Javier Colmenero (javier@comunitea.com), ',
     'license': 'AGPL-3',
-    'depends': ['sale_timesheet', 'product_contract', 'project'],
+    'depends': [
+        'sale_timesheet', 'product_contract', 'project', 
+        'contract_variable_qty_timesheet'],
     'data': [
         'security/ir.model.access.csv',
         'data/config_contract.xml',

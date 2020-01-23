@@ -8,4 +8,22 @@
         </record>
 
     </data>
+
+<data>
+
+<!-- FACTURAR DESDE ULTIMA FACTURA HASTA LA FECHA DE RECURRENCIA DE LA LÍNEA -->
+<record id="contract_variable_qty_timesheet.contract_line_qty_formula_project_timesheet" model="contract.line.qty.formula">
+    <field name='name'>Project Timesheets</field>
+    <field name="code">group = env['account.analytic.line'].read_group([
+    ('account_id', '=', line.analytic_account_id.id),
+    ('product_id', '=', False),
+    ('project_id', '!=', False),
+    ('date', '&gt;=', line.last_date_invoiced if line.last_date_invoiced else line.date_start),
+    ('date', '&lt;=', line.recurring_next_date),
+], fields=['unit_amount'], groupby=[])
+result = group and group[0]['unit_amount'] or 0.0
+    </field>
+</record>
+
+</data>
 </odoo>

@@ -115,7 +115,7 @@ def get_line_vals(data, idx, contract=False):
         'product_id': product_id,
         'name': 'FACTURACIÓN VARIABLE',
         'recurring_interval': 1,
-        'recurring_rule_type': 'monthly',
+        'recurring_rule_type': 'yearly',
         'date_start': date_start,
         'date_end': date_end,
         'recurring_next_date': recurring_next_date if recurring_next_date >= date_start else date_start,
