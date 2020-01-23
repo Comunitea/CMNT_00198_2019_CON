@@ -11,10 +11,3 @@ class MailComposer(models.TransientModel):
         readonly=True,
         default=lambda self: 
         self.env['res.company']._company_default_get('account.invoice'))
-
-    # @api.model
-    # def default_get(self, fields):
-    #     res = super().default_get(fields)
-    #     # import ipdb; ipdb.set_trace()
-
-    #     return res

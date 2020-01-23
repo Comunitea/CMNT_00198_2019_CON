@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_contract_variable_invoices_wzd_form" model="ir.ui.view">
+        <field name="name">Invoice contract hours</field>
+        <field name="model">contract.variable.invoicing.wzd</field>
+        <field name="arch" type="xml">
+            <form string="Invoice contract hours">
+                <header>
+                <div name="help">
+                    <p>It will invoice the hours related to the selected contracts 
+                    from last invoice date (or contract start date)to the selected invoice date</p>
+                </div>
+                </header>
+                <group>
+                    <field name="invoice_to"/>
+                </group>
+                <footer>
+                    <button name="make_invoices" string="Create invoices" type="object" class="oe_highlight" />
+                    or
+                    <button special="cancel" string="Cancel" class="oe_link" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_contract_variable_invoices_wzd"
+                multi="False"
+                key2="client_action_multi"
+                name="Invoice contract hours"
+                src_model="contract.contract"
+                res_model="contract.variable.invoicing.wzd"
+                view_mode="form"
+                view_type="form"
+                target="new" />
+
+</odoo>

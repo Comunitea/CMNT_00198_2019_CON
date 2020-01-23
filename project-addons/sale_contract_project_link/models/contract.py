@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models, api, _
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 import datetime
 
 
@@ -77,10 +77,26 @@ class ContractContract(models.Model):
     # TIENE EN CUENTA QUE ES API MULTI, TODO PR A OCA
     # @api.multi
     def _recurring_create_invoice(self, date_ref=False):
+        no_recurring_mode = self._context.get('no_recurring_mode', False)
+        if any([c.no_recurring for c in self]) and not no_recurring_mode:
+            raise UserError(_('You cant invoice not recurring invoices from \
+                here.You mus utse the variable invoice wizard.'))
+
+
         invoices_values = self._prepare_recurring_invoices_values(date_ref)
 
-        # CODIGO DE SALE_CONTRACT_INVOICING CON BUCLE
-        invoices = self._finalize_and_create_invoices(invoices_values)
+        # No crear facturas si no hay líneas
+        invoice_values_with_lines = []
+        for dic in invoices_values:
+            if dic.get('invoice_line_ids', []):
+                invoice_values_with_lines.append(dic)
+        if not invoice_values_with_lines:
+            return self.env['account.invoice']
+
+        invoices = self._finalize_and_create_invoices(
+            invoice_values_with_lines)
+
+        # CODIGO DE SALE_CONTRACT_INVOICING CON BUCLE (FIX OCA BUG)
         for contract in self:
             if not contract.invoicing_sales:
                 continue
@@ -95,6 +111,7 @@ class ContractContract(models.Model):
             if sales:
                 invoice_ids = sales.action_invoice_create()
                 invoices |= self.env['account.invoice'].browse(invoice_ids)[:1]
+     
 
         return invoices
     
@@ -115,7 +132,7 @@ class ContractContract(models.Model):
 
         domain.extend([
             ('recurring_next_date', '<=', date_ref),
-            ('not_recurring', '=', False),
+            ('no_recurring', '=', False),
         ])
         return domain
 
@@ -169,6 +186,35 @@ class ContractLine(models.Model):
                     rec.create_invoice_visibility = bool(
                         rec.recurring_next_date
                     )
+
+    def _compute_next_period_date_start(self):
+        res = super()._compute_next_period_date_start()
+        for line in self:
+            if line.contract_id.no_recurring and line.last_date_invoiced:
+                line.next_period_date_start = line.last_date_invoiced 
+        return res
+    
+    @api.multi
+    def _update_recurring_next_date(self):
+        """
+        OVERWRITE para ignorar las líneas que vienen de facturación manual.
+        Ya las actualizo yo manualmente
+        """
+        return super()
+        for rec in self:
+            last_date_invoiced = rec.next_period_date_end
+            recurring_next_date = rec.get_next_invoice_date(
+                last_date_invoiced + relativedelta(days=1),
+                rec.recurring_invoicing_type,
+                rec.recurring_invoicing_offset,
+                rec.recurring_rule_type,
+                rec.recurring_interval,
+                max_date_end=rec.date_end,
+            )
+            rec.write({
+                "recurring_next_date": recurring_next_date,
+                "last_date_invoiced": last_date_invoiced,
+            })
 
 # FIX BUG NO ME DEJA SUPRIMIR UNA LINEA SI HE USADO EL ASISTENTE
 class ContractLineWizard(models.TransientModel):

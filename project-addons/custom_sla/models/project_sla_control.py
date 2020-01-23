@@ -223,7 +223,6 @@ class ProjectSlaControl(models.Model):
         Used by controlled documents to ask for SLA calculation and storage.
         ``docs`` is a Browse object
         """
-        # import ipdb; ipdb.set_trace()
         # context flag to avoid infinite loops on further writes
         context = self._context or {}
         if '__sla_stored__' in self._context:

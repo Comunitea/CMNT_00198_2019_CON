@@ -18,6 +18,7 @@
         'views/project_task_view.xml',
         'views/project_view.xml',
         'views/contract.xml',
+        'wizard/contract_variable_invoicing.xml',
         ],
     'development_status': 'Beta',
     'maintainers': [
