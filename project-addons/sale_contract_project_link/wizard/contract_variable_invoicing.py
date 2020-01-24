@@ -12,11 +12,33 @@ class ContractVariableInvoicingWzd(models.TransientModel):
 
     invoice_to = fields.Date('Invoice To', default=fields.Date.today(), 
                              required=True)
+    
+    @api.multi
+    def show_invoices(self, invoices):
+        self.ensure_one()
+        tree_view_ref = ('account.invoice_tree_with_onboarding')
+        form_view_ref = ('account.invoice_form')
+        tree_view = self.env.ref(tree_view_ref, raise_if_not_found=False)
+        form_view = self.env.ref(form_view_ref, raise_if_not_found=False)
+        action = {
+            'type': 'ir.actions.act_window',
+            'name': 'Invoices',
+            'res_model': 'account.invoice',
+            'view_type': 'form',
+            'view_mode': 'tree,kanban,form,calendar,pivot,graph,activity',
+            'domain': [('id', 'in', invoices.ids)],
+        }
+        if tree_view and form_view:
+            action['views'] = [(tree_view.id, 'tree'), (form_view.id, 'form')]
+        return action
+
 
     @api.multi
     def make_invoices(self):
+        """
+        Facturar horas de manera variable
+        """
         res = False
-        # import ipdb; ipdb.set_trace()
         self.ensure_one()
         active_ids = self._context.get('active_ids')
         ctx = self._context.copy()
@@ -28,22 +50,13 @@ class ContractVariableInvoicingWzd(models.TransientModel):
             raise UserError(
             _('You can not invoice recurrent contracts from this wizard'))
         
-        if contracts:
-            contracts.mapped('contract_line_ids').write(
-                {'recurring_next_date': self.invoice_to})
-            invoices = contracts._recurring_create_invoice()
-            
-            # Actualizar solo la ultima fecha de factura a las que tienen 
-            # factura asociada
-            contracts2update = self.env['contract.contract']
-            for contract in contracts:
-                if contract._get_related_invoices():
-                    contracts2update += contract
-
-            if contracts2update:
-                contracts2update.mapped('contract_line_ids').write(
-                    {'last_date_invoiced': self.invoice_to,
-                     'recurring_next_date':  self.invoice_to + 
-                     relativedelta(1)
-                    })
+        # Fecha de creación de factura equivalente al asistente.
+        # Para aquellos facturados se actualizarán despues sus fechas en
+        # _finalize_invoice_creation
+        contracts.mapped('contract_line_ids').write(
+            {'recurring_next_date': self.invoice_to})
+        
+        invoices = contracts._recurring_create_invoice()
+        if invoices:
+            self.show_invoices(invoices)
         return

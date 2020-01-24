@@ -4,6 +4,8 @@
 from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError, UserError
 import datetime
+from dateutil.relativedelta import relativedelta
+
 
 
 class ContractContract(models.Model):
@@ -73,7 +75,45 @@ class ContractContract(models.Model):
                 {'analytic_account_id': vals['group_id']})
         return res
     
-    # FIX!! OVERWRITE PORQUE EL MODULO DE SALE_CONTRACT_INVOICING NO
+    @api.model
+    def _get_contracts_to_invoice_domain(self, date_ref=None):
+        """
+        SOBREESCRITO PARA PERSONALIZAR EL DOMAIN DE BUSQUEDA DEL CRON
+        """
+        domain = []
+        if not date_ref:
+            date_ref = fields.Date.context_today(self)
+
+            param = self.env.ref(
+                'sale_contract_project_link.contract_invoice_days_before')
+            if param and param.value:
+                days = int(param.value)
+                date_ref = date_ref + datetime.timedelta(days=days)
+
+        domain.extend([
+            ('recurring_next_date', '<=', date_ref),
+            ('no_recurring', '=', False),
+        ])
+        return domain
+    
+    def _finalize_and_create_invoices(self, invoices_values):
+        """
+        Si las facturas creadas son desde no recurrentes, como no tienen la
+        fecha actualizada de _update_recurring_next_date, lo calculo yo aquí.
+        """
+        invoices = super()._finalize_and_create_invoices(invoices_values)
+
+        contract_lines = invoices.mapped('invoice_line_ids.contract_line_id').\
+            filtered(lambda l: l.contract_id.no_recurring)
+        
+        if contract_lines:
+            wzd_date = contract_lines[0].recurring_next_date
+            contract_lines.write({
+                "last_date_invoiced": wzd_date,
+                "recurring_next_date": wzd_date + relativedelta(days=1)})
+        return invoices
+    
+       # FIX!! OVERWRITE PORQUE EL MODULO DE SALE_CONTRACT_INVOICING NO
     # TIENE EN CUENTA QUE ES API MULTI, TODO PR A OCA
     # @api.multi
     def _recurring_create_invoice(self, date_ref=False):
@@ -111,32 +151,8 @@ class ContractContract(models.Model):
             if sales:
                 invoice_ids = sales.action_invoice_create()
                 invoices |= self.env['account.invoice'].browse(invoice_ids)[:1]
-     
-
         return invoices
     
-    @api.model
-    def _get_contracts_to_invoice_domain(self, date_ref=None):
-        """
-        SOBREESCRITO PARA PERSONALIZAR EL DOMAIN DE BUSQUEDA DEL CRON
-        """
-        domain = []
-        if not date_ref:
-            date_ref = fields.Date.context_today(self)
-
-            param = self.env.ref(
-                'sale_contract_project_link.contract_invoice_days_before')
-            if param and param.value:
-                days = int(param.value)
-                date_ref = date_ref + datetime.timedelta(days=days)
-
-        domain.extend([
-            ('recurring_next_date', '<=', date_ref),
-            ('no_recurring', '=', False),
-        ])
-        return domain
-
-
 class ContractLine(models.Model):
     _inherit = "contract.line"
 
@@ -188,6 +204,10 @@ class ContractLine(models.Model):
                     )
 
     def _compute_next_period_date_start(self):
+        """
+        Facturación variable ne contratos no recurrentes debe dar el siguinte
+        inicio de período la fecha de última factura
+        """
         res = super()._compute_next_period_date_start()
         for line in self:
             if line.contract_id.no_recurring and line.last_date_invoiced:
@@ -197,27 +217,14 @@ class ContractLine(models.Model):
     @api.multi
     def _update_recurring_next_date(self):
         """
-        OVERWRITE para ignorar las líneas que vienen de facturación manual.
-        Ya las actualizo yo manualmente
+        Ignorar las líneas que vienen de facturación manual.
+        Ya las actualizo yo manualmente en _finalize_and_create_invoices
         """
-        for rec in self:
-            if rec.contract_id.no_recurring:
-                continue
-            last_date_invoiced = rec.next_period_date_end
-            recurring_next_date = rec.get_next_invoice_date(
-                last_date_invoiced + relativedelta(days=1),
-                rec.recurring_invoicing_type,
-                rec.recurring_invoicing_offset,
-                rec.recurring_rule_type,
-                rec.recurring_interval,
-                max_date_end=rec.date_end,
-            )
-            rec.write({
-                "recurring_next_date": recurring_next_date,
-                "last_date_invoiced": last_date_invoiced,
-            })
-
-# FIX BUG NO ME DEJA SUPRIMIR UNA LINEA SI HE USADO EL ASISTENTE
+        recs2super = self.filtered(lambda x: not x.contract_id.no_recurring)
+        return super(ContractLine, recs2super)._update_recurring_next_date()
+       
+# FIX BUG NO ME DEJA SUPRIMIR UNA LINEA SI HE USADO EL ASISTENTE POR CULPA DEL
+# REQUIRED
 class ContractLineWizard(models.TransientModel):
 
     _inherit = 'contract.line.wizard'
