@@ -58,5 +58,5 @@ class ContractVariableInvoicingWzd(models.TransientModel):
         
         invoices = contracts._recurring_create_invoice()
         if invoices:
-            self.show_invoices(invoices)
+            return self.show_invoices(invoices)
         return
