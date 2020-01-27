@@ -22,6 +22,7 @@
         'views/project_task_view.xml',
         'views/project_view.xml',
         'views/contract_view.xml',
+        'wizard/excess_hours_invoice.xml',
         ],
     'development_status': 'Beta',
     'maintainers': [

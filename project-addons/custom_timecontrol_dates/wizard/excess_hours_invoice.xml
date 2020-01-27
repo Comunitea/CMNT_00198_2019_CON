@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_excess_hours_invoice_wzd_form" model="ir.ui.view">
+        <field name="name">Excess hours invoice</field>
+        <field name="model">excess.hours.invoice.wzd</field>
+        <field name="arch" type="xml">
+            <form string="Excess hours invoice">
+                <header>
+                <div name="help">
+                    <p>It will invoice the hours related to the selected contracts 
+                    exceeded from the planing ones</p>
+                </div>
+                </header>
+                <group>
+                    <field name="product_id"/>
+                    <field name="journal_id"/>
+                </group>
+                <footer>
+                    <button name="make_invoice" string="Create invoice" type="object" class="oe_highlight" />
+                    or
+                    <button special="cancel" string="Cancel" class="oe_link" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_excess_hours_invoice_wzd"
+                multi="False"
+                key2="client_action_multi"
+                name="Excess hours invoice"
+                src_model="contract.contract"
+                res_model="excess.hours.invoice.wzd"
+                view_mode="form"
+                view_type="form"
+                target="new" />
+
+</odoo>
