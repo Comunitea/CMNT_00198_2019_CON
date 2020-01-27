@@ -15,6 +15,8 @@
         'account',
         'web',
         'account_due_dates_str',
+        'custom_timecontrol_dates',
+        'custom_sla'
     ],
     'data': [
         'views/report_templates.xml',
