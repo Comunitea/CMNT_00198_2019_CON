@@ -153,6 +153,23 @@ class ContractContract(models.Model):
                 invoices |= self.env['account.invoice'].browse(invoice_ids)[:1]
         return invoices
     
+    @api.multi
+    def action_view_issues(self):
+        self.ensure_one()
+        return {
+            "name": _("Tasks"),
+            "view_mode": "kanban,tree,form,calendar,pivot,graph,activity",
+            "res_model": "project.task",
+            "type": "ir.actions.act_window",
+            "context": {
+                'search_default_contract_id': [self.id],
+                'search_default_is_issue': True,
+                'default_contract_id': self.id,
+                'default_project_id': self.project_id.id,
+                'default_is_issue': True,
+            }
+        }
+    
 class ContractLine(models.Model):
     _inherit = "contract.line"
 
