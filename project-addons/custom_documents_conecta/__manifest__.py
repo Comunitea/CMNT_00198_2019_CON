@@ -21,9 +21,11 @@
     'data': [
         'views/report_templates.xml',
         'views/sale_report_templates.xml',
-        'views/report_invoice.xml',
+        'views/report_project.xml',
         'views/res_company_views.xml',
         'views/report_menu.xml',
+        'wizard/print_hours_report_view.xml',
+
         ],
     'development_status': 'Beta',
     'maintainers': [

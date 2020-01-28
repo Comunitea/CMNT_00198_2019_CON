@@ -39,6 +39,15 @@
     print_report_name="(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)"
 />
 
+ <report 
+    id="action_report_hours_project"
+    string="Project Hours in period"
+    model="project.project" 
+    report_type="qweb-pdf"
+    file="custom_documents_conecta.report_project_hours" 
+    name="custom_documents_conecta.report_project_hours"
+    print_report_name="'Project Hours - %s' % (object.name)"
+/>
 
 
 </odoo>
