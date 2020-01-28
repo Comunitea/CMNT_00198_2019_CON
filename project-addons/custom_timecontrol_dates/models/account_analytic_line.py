@@ -14,8 +14,8 @@ class AccountAnalyticLine(models.Model):
 
     # From sd_timecontrol_dates
     #Overwrite date for Datetime
-    date_start = fields.Datetime('Date Start', default=fields.Datetime.now())
-    date_end = fields.Datetime('Date End', default=fields.Datetime.now())
+    date_start = fields.Datetime('Date Start', default=fields.Datetime.now)
+    date_end = fields.Datetime('Date End', default=fields.Datetime.now)
     work_type = fields.Selection(
         [('presencial','Presencial'),
          ('remoto','Remoto'),
