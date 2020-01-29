@@ -1,27 +1,90 @@
 <?xml version="1.0"?>
 <odoo>
 
-
-
-<template id="report_project_hours_document">
-    <t t-call="custom_documents_conecta.custom_external_layout">
-        <t t-set="doc" t-value="o.with_context(lang=o.partner_id.lang)" /> 
-        <h4>
-            HORAS
-        </h4>
-        <span t-esc="eee"></span>
+<template id="report_project_hours">
+    <t t-call="web.html_container">
+        <t t-foreach="report_data.keys()" t-as="project_obj">
+            <t t-call="custom_documents_conecta.report_project_hours_document"/>
+        </t>
     </t>
 </template>
 
+<template id="report_project_hours_document">
+    <t t-call="custom_documents_conecta.custom_external_layout">
+        <!-- <t t-debug="pdb"/> -->
+        <t t-set="project_dic" t-value="report_data[project_obj]"/>
+        <h4>
+            Resumen de actuaciones de soporte técnico
+        </h4>
 
+        <h4>
+            <span t-esc="project_obj.name"/>
+        </h4>
 
+        <h3>
+        Incidencias
+        </h3>
+        <t t-foreach="project_dic['issues'].keys()" t-as="issue_obj">
+            <t t-set="issue_dic" t-value="project_dic['issues'][issue_obj]"/> 
+            <div class="task_block">
+                <div>
+                    Título incidencia: <span t-esc="issue_obj.name"/>
+                    <hr/> 
+                </div>
+                <div>
+                    Numero incidencia: <span t-esc="issue_obj.id"/>
+                </div>
+                <div>
+                    Estado: <span t-esc="issue_obj.stage_id.name"/>
+                </div>
+                <div>
+                    Total: <span t-esc="issue_dic['total']"/>
+                </div>
+                <div>
+                    Persona de aviso: <span t-esc="issue_obj.notice_person"/>
+                </div>
+                <div>
+                    Descripción: <span t-esc="issue_obj.description"/>
+                </div>
 
-<template id="report_project_hours">
-    <t t-call="web.html_container">
-        <t t-foreach="docs" t-as="o">
-            <t t-set="lang" t-value="o.partner_id and o.partner_id.lang"/>
-            <t t-call="custom_documents_conecta.report_project_hours_document" t-lang="lang"/>
+                <div class="hours_part_block">
+                <t t-foreach="issue_dic['lines']" t-as="line">
+                    <div>
+                        Técnico: <span t-esc="line.employee_id.name"/>
+                    </div>
+                    <div>
+                        Fecha y hora de inicio: <span t-esc="line.date_start"/>
+                    </div>
+                    <div>
+                        Fecha y hora de fin: <span t-esc="line.date_end"/>
+                    </div>
+                    <div>
+                        Horas a facturar: <span t-esc="line.unit_amount"/>
+                    </div>
+                     <div>
+                        Horas descontadas: <span t-esc="line.discount"/>
+                    </div>
+                    <div>
+                       Tipo trabajo: <span t-esc="line.work_type"/>
+                    </div>
+                     <div>
+                       <span t-esc="line.name"/>
+                    </div>
+                    
+                </t>
+                </div>
+            </div>
         </t>
+
+
+
+        <h3>
+        Tareas e instalaciones
+        </h3>
+        <!-- <t t-foreach="project_dic['tasks'].keys()" t-as="task_name">
+            <span t-esc="task_name"/>
+        </t>
+        -->
     </t>
 </template>
 

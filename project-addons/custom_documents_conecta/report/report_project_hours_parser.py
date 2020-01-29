@@ -13,10 +13,55 @@ class ReportProjectHours(models.AbstractModel):
     @api.model
     def _get_report_values(self, docids, data=None):
         # import ipdb; ipdb.set_trace()
-        doc_id = self.env['project.project'].browse(docids)
+        project_ids = data.get('project_ids')
+        projects = self.env['project.project'].browse(project_ids)
+
+        domain = [('task_id', '!=', False)]
+        if data.get('date_start'):
+            domain.append(('date', '>=', data['date_start']))
+        if data.get('date_end'):
+            domain.append(('date', '<=', data['date_end']))
+
+        report_data = {}
+        for project in projects:
+            p_id = project
+            report_data[project] = {
+                'issues': {}, 'tasks': {}, 'ch': project.quantity_max,
+                'wh': 0.0, 'dh': 0.0, 'eh': 0.0, 'th': 0.0,
+                'ref': project.contract_id and project.contract_id.code
+                or ''
+            }
+            domain.append(('project_id', '=', project.id))
+            a_lines = self.env['account.analytic.line'].search(domain)
+            
+            for line in a_lines:
+                task_type = 'issues'
+                if not line.task_id.is_issue:
+                    task_type = 'tasks'
+                if line.task_id not in report_data[project][task_type]:
+                    task = line.task_id
+                    report_data[p_id][task_type][task] = {
+                        'lines': [],
+                        'total': 0.0
+                    }
+                report_data[p_id][task_type][task]['lines'] += \
+                    line
+                report_data[p_id][task_type][task]['total'] += \
+                    line.unit_amount - line.discount
+                report_data[p_id]['wh'] += line.unit_amount
+                report_data[p_id]['dh'] += line.discount
+            
+            wh = report_data[p_id]['wh']
+            dh = report_data[p_id]['dh']
+            th = wh - dh
+            report_data[p_id]['th'] = th
+            if th > project.quantity_max:
+                report_data[p_id]['eh'] = th - project.quantity_max
+        
+        # import ipdb; ipdb.set_trace()
         return {
-            'doc_ids': docids,
+            'doc_ids': project.ids,
             'data': data,
-            'docs': doc_id,
-            'eee': 'EEEE69'
+            'docs': projects,
+            'report_data': report_data
         }

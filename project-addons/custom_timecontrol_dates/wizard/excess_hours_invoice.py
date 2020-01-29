@@ -12,7 +12,6 @@ class ExcessHoursInvoiceWzd(models.TransientModel):
 
     @api.multi
     def _get_journal(self):
-        import ipdb; ipdb.set_trace()
         return self.env['account.journal'].search([('code', '=', 'T')], limit=1)
 
     product_id = fields.Many2one('product.product', 'Product to invoice')
