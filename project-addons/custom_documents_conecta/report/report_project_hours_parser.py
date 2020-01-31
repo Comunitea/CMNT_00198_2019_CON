@@ -1,6 +1,6 @@
 # © 2016 Comunitea - Javier Colmenero <javier@comunitea.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo import models, api, _
+from odoo import models, api, _, fields
 from odoo.exceptions import UserError
 
 
@@ -17,10 +17,14 @@ class ReportProjectHours(models.AbstractModel):
         projects = self.env['project.project'].browse(project_ids)
 
         domain = [('task_id', '!=', False)]
+        date_start = ''
+        date_end = ''
         if data.get('date_start'):
             domain.append(('date', '>=', data['date_start']))
+            date_start = fields.Date.from_string(data['date_start']).strftime('%d-%m-%Y')
         if data.get('date_end'):
             domain.append(('date', '<=', data['date_end']))
+            date_end = fields.Date.from_string(data['date_end']).strftime('%d-%m-%Y')
 
         report_data = {}
         for project in projects:
@@ -29,7 +33,9 @@ class ReportProjectHours(models.AbstractModel):
                 'issues': {}, 'tasks': {}, 'ch': project.quantity_max,
                 'wh': 0.0, 'dh': 0.0, 'eh': 0.0, 'th': 0.0,
                 'ref': project.contract_id and project.contract_id.code
-                or ''
+                or '',
+                'date_start': date_start,
+                'date_end': date_end
             }
             domain.append(('project_id', '=', project.id))
             a_lines = self.env['account.analytic.line'].search(domain)
@@ -58,7 +64,6 @@ class ReportProjectHours(models.AbstractModel):
             if th > project.quantity_max:
                 report_data[p_id]['eh'] = th - project.quantity_max
         
-        # import ipdb; ipdb.set_trace()
         return {
             'doc_ids': project.ids,
             'data': data,

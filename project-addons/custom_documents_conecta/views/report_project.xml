@@ -11,70 +11,158 @@
 
 <template id="report_project_hours_document">
     <t t-call="custom_documents_conecta.custom_external_layout">
-        <!-- <t t-debug="pdb"/> -->
-        <t t-set="project_dic" t-value="report_data[project_obj]"/>
-        <h4>
-            Resumen de actuaciones de soporte técnico
-        </h4>
+        <div class="page custom_document_conecta">
+            <div class="row text-center">
+                <div class="col-7">
+                    <t t-set="project_dic" t-value="report_data[project_obj]"/>
+                    <h3>
+                        Resumen de actuaciones de soporte técnico
+                    </h3>
 
-        <h4>
-            <span t-esc="project_obj.name"/>
-        </h4>
-
-        <h3>
-        Incidencias
-        </h3>
-        <t t-foreach="project_dic['issues'].keys()" t-as="issue_obj">
-            <t t-set="issue_dic" t-value="project_dic['issues'][issue_obj]"/> 
-            <div class="task_block">
-                <div>
-                    Título incidencia: <span t-esc="issue_obj.name"/>
-                    <hr/> 
+                    <h4>
+                        <span t-esc="project_obj.partner_id.name"/>
+                    </h4>
+                     <h5>
+                        <span t-esc="project_obj.name"/>
+                    </h5>
                 </div>
-                <div>
-                    Numero incidencia: <span t-esc="issue_obj.id"/>
-                </div>
-                <div>
-                    Estado: <span t-esc="issue_obj.stage_id.name"/>
-                </div>
-                <div>
-                    Total: <span t-esc="issue_dic['total']"/>
-                </div>
-                <div>
-                    Persona de aviso: <span t-esc="issue_obj.notice_person"/>
-                </div>
-                <div>
-                    Descripción: <span t-esc="issue_obj.description"/>
-                </div>
-
-                <div class="hours_part_block">
-                <t t-foreach="issue_dic['lines']" t-as="line">
-                    <div>
-                        Técnico: <span t-esc="line.employee_id.name"/>
+                <div class="col-5">
+                    <div class="custom-table">
+                            <div class="custom-th">
+                                <div class="custom-th-cell">
+                                    Contrato
+                                </div>
+                            </div>
+                            <div class="custom-row">
+                                <div class="row">
+                                    <div class="col-6 text-right">
+                                    Referencia:
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <span t-esc="project_obj.contract_id.code"/>
+                                    </div>
+                                </div>
+                                 <div class="row">
+                                    <div class="col-6 text-right">
+                                    Horas contratadas:
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <span t-esc="project_obj.quantity_max"/>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
-                    <div>
-                        Fecha y hora de inicio: <span t-esc="line.date_start"/>
+                    <div class="custom-table">
+                            <div class="custom-th">
+                                <div class="custom-th-cell">
+                                    Resumen
+                                </div>
+                            </div>
+                            <div class="custom-row">
+                                <div class="row">
+                                    <div class="col-6 text-right">
+                                    Período:
+                                    </div>
+                                    <div class="col-6 text.center">
+                                        <span t-if="project_dic['date_start']" t-esc="project_dic['date_start']"/>
+                                        <br/><span t-if="project_dic['date_end']">a</span><br/>
+                                        <span t-if="project_dic['date_end']" t-esc="project_dic['date_end']"/>
+                                    </div>
+                                </div>
+                                 <div class="row">
+                                    <div class="col-6 text-right">
+                                    Horas empleadas:
+                                    </div>
+                                    <div class="col-6 text.center">
+                                        <span t-esc="project_dic['wh']"/>
+                                    </div>
+                                </div>
+                                 <div class="row">
+                                    <div class="col-6 text-right">
+                                    Horas descontadas:
+                                    </div>
+                                    <div class="col-6 text.center">
+                                        <span t-esc="project_dic['dh']"/>
+                                    </div>
+                                </div>
+                                 <div class="row">
+                                    <div class="col-6 text-right">
+                                    Horas excedoda:
+                                    </div>
+                                    <div class="col-6 text.center">
+                                        <span t-esc="project_dic['eh']"/>
+                                    </div>
+                                </div>
+                                 <div class="row">
+                                    <div class="col-6 text-right">
+                                    <strong>Total:</strong>
+                                    </div>
+                                    <div class="col-6 text.center">
+                                        <strong><span t-esc="project_dic['th']"/></strong>
+                                    </div>
+                                </div>
+                                
+                            </div>
                     </div>
-                    <div>
-                        Fecha y hora de fin: <span t-esc="line.date_end"/>
-                    </div>
-                    <div>
-                        Horas a facturar: <span t-esc="line.unit_amount"/>
-                    </div>
-                     <div>
-                        Horas descontadas: <span t-esc="line.discount"/>
-                    </div>
-                    <div>
-                       Tipo trabajo: <span t-esc="line.work_type"/>
-                    </div>
-                     <div>
-                       <span t-esc="line.name"/>
-                    </div>
-                    
-                </t>
                 </div>
             </div>
-        </t>
+            <h3>
+            Incidencias
+            </h3>
+            <t t-foreach="project_dic['issues'].keys()" t-as="issue_obj">
+                <t t-set="issue_dic" t-value="project_dic['issues'][issue_obj]"/> 
+                <div class="task-block">
+                    <div class="issue-tittle">
+                        Título Incidencia: <span t-esc="issue_obj.name"/>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            Numero incidencia: <span t-esc="issue_obj.id"/>
+                        </div>
+                        <div class="col-3">
+                            Estado: <span t-esc="issue_obj.stage_id.name"/>
+                        </div>
+                        <div class="col-3 offset-3">
+                            Total: <span t-esc="issue_dic['total']"/>
+                        </div>
+                    </div>
+                    <div>
+                        Persona de aviso: <span t-esc="issue_obj.notice_person"/>
+                    </div>
+                    <div>
+                        Descripción: <br/>
+                        <span t-esc="issue_obj.description"/>
+                    </div>
+
+                    <div class="hours_part_block">
+                        <t t-foreach="issue_dic['lines']" t-as="line">
+                            <div>
+                                Técnico: <span t-esc="line.employee_id.name"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    Fecha y hora de inicio: <span t-esc="line.date_start"/>
+                                </div>
+                                <div class="col-4">
+                                    Fecha y hora de fin: <span t-esc="line.date_end"/>
+                                </div>
+                                <div class="col-4">
+                                    Horas a facturar: <span t-esc="line.unit_amount"/>
+                                    <br/>
+                                        Horas descontadas: <span t-esc="line.discount"/>
+                                </div>
+                            </div>
+                            <div>
+                                Tipo trabajo: <span t-esc="line.work_type"/>
+                            </div>
+                            <div>
+                                <span t-raw="line.name"/>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </t>
+        </div>
 
 
 
