@@ -203,22 +203,40 @@ div#custom_total table {
     font-size: 13px;
 }
 
-.task-block{
-    margin-bottom: 2em;
+.total-hours{
+    padding-right: 3em;
 }
 
-.issue-tittle{
-    border-bottom: 1px solid;
-    font-size: 18px !important;
-    margin-bottom: 2em;
+.span-box{
+    display: inline;
+    background-color: #153d66;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    padding-left: 3em;
+    padding-right: 3em;
 }
+
+.task-block{
+    margin-bottom: 2em;
+    line-height: 2em;
+    .issue-tittle{
+        border-bottom: 1px solid;
+        font-size: 18px !important;
+    }
+    .issue-container{
+        margin-left: 1em;
+    }
+}
+
 
 .hours_part_block{
     // padding-left: 1em;
-    margin-top: 2em;
+    // margin-top: 1em;
 }
 
 .hours_part_tecnique{
-    font-size: 15px !important;
-    margin-bottom: 2em;
+    font-size: 18px !important;
+    margin-bottom: 0.5em;
+    margin-top: 1em;
 }
