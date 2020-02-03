@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-27 16:01+0000\n"
-"PO-Revision-Date: 2020-01-27 16:01+0000\n"
+"POT-Creation-Date: 2020-02-03 16:44+0000\n"
+"PO-Revision-Date: 2020-02-03 16:44+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -172,6 +172,16 @@ msgid "Observations"
 msgstr "Observaciones"
 
 #. module: custom_timecontrol_dates
+#: model:ir.model.fields,field_description:custom_timecontrol_dates.field_project_project__period_date_end
+msgid "Period Date End"
+msgstr "Fecha fin período"
+
+#. module: custom_timecontrol_dates
+#: model:ir.model.fields,field_description:custom_timecontrol_dates.field_project_project__period_date_start
+msgid "Period Date Start"
+msgstr "Fecha inicio período"
+
+#. module: custom_timecontrol_dates
 #: selection:account.analytic.line,work_type:0
 msgid "Presencial"
 msgstr ""
@@ -229,6 +239,7 @@ msgid "Time Control"
 msgstr "Control de tiempos"
 
 #. module: custom_timecontrol_dates
+#: model_terms:ir.ui.view,arch_db:custom_timecontrol_dates.edit_project_add_time_control
 #: model_terms:ir.ui.view,arch_db:custom_timecontrol_dates.view_account_analytic_line_form_inherit_account_custom
 msgid "Times"
 msgstr "Tiempos"

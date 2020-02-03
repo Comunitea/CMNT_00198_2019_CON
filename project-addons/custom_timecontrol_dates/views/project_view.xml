@@ -10,12 +10,16 @@
         <field name="inherit_id" ref="project.edit_project"/>
         <field name="arch" type="xml">
   
-            <field name="resource_calendar_id" position="after">
-                <field name="quantity_max" widget="float_time" />
-                <field name="hours_quantity" widget="float_time" />
-                <field name="remaining_hours" widget="float_time" />
-                <field name="total_discount" widget="float_time" />
-            </field>
+            <group name="misc" position="inside">
+                <group name="custom_times" string="Times">
+                    <field name="period_date_start"/>
+                    <field name="period_date_end"/>
+                    <field name="quantity_max" widget="float_time" />
+                    <field name="hours_quantity" widget="float_time" />
+                    <field name="remaining_hours" widget="float_time" />
+                    <field name="total_discount" widget="float_time" />
+                </group>
+            </group>
             
         </field>
     </record>

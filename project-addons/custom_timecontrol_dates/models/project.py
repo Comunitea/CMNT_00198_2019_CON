@@ -14,16 +14,14 @@ class ProjectProject(models.Model):
             hours_quantity = 0.0
             remaing_hours = 0.0
             discounted_hours = 0.0
-            # hours_quantity = \
-            #     round(sum(project.task_ids.mapped('effective_hours')), 2)
 
             domain = [('project_id', '=', project.id)]
-            # if project.analytic_account_id:
-            #     domain = [
-            #         '|',
-            #         ('account_id', '=', project.analytic_account_id.id),
-            #         ('project_id', '=', project.id),
-            #     ]
+
+            if project.period_date_start:
+                domain += [('date_start', '>=', project.period_date_start)]
+            if project.period_date_start:
+                domain += [('date_end', '>=', project.period_date_start)]
+
             a_lines = self.env['account.analytic.line'].search(domain)
             hours_quantity = \
                 round(sum(a_lines.mapped('unit_amount')), 2)
@@ -43,6 +41,8 @@ class ProjectProject(models.Model):
             tot_disc = round(sum(lines.mapped('discount')), 2)
             project.total_discount = tot_disc
     
+    period_date_start = fields.Datetime('Period Date Start')
+    period_date_end = fields.Datetime('Period Date End')
     quantity_max = fields.Float('Scheduled Time')
     hours_quantity = fields.Float(
         'Total Worked Time', compute='_hours_quantity')
