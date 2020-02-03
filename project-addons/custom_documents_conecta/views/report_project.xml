@@ -87,7 +87,7 @@
                                 </div>
                                  <div class="row">
                                     <div class="col-6 text-right">
-                                    Horas excedoda:
+                                    Horas excedidas:
                                     </div>
                                     <div class="col-6 text.center">
                                         <span t-esc="project_dic['eh']"/>
@@ -131,29 +131,31 @@
                     </div>
                     <div>
                         Descripción: <br/>
-                        <span t-esc="issue_obj.description"/>
+                        <span t-raw="issue_obj.description"/>
                     </div>
 
                     <div class="hours_part_block">
                         <t t-foreach="issue_dic['lines']" t-as="line">
-                            <div>
+                            <div class="hours_part_tecnique">
                                 Técnico: <span t-esc="line.employee_id.name"/>
                             </div>
                             <div class="row">
                                 <div class="col-4">
-                                    Fecha y hora de inicio: <span t-esc="line.date_start"/>
+                                    <strong>Fecha de inicio:</strong> <span t-esc="line.date_start.strftime('%HH:%MM %d-%m-%Y')"/>
                                 </div>
                                 <div class="col-4">
-                                    Fecha y hora de fin: <span t-esc="line.date_end"/>
+                                    <strong>Fecha de fin:</strong> <span t-esc="line.date_end.strftime('%HH:%MM %d-%m-%Y')"/>
                                 </div>
                                 <div class="col-4">
-                                    Horas a facturar: <span t-esc="line.unit_amount"/>
-                                    <br/>
-                                        Horas descontadas: <span t-esc="line.discount"/>
+                                    <strong>Horas a facturar:</strong> <span t-esc="line.unit_amount"/>
+                                    <t t-if="line.discount">
+                                        <br/>
+                                        <strong>Horas descontadas:</strong> <span t-esc="line.discount"/>
+                                    </t>
                                 </div>
                             </div>
                             <div>
-                                Tipo trabajo: <span t-esc="line.work_type"/>
+                                <strong>Tipo trabajo:</strong> <span t-esc="line.work_type"/>
                             </div>
                             <div>
                                 <span t-raw="line.name"/>

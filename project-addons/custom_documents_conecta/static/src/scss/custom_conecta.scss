@@ -204,15 +204,21 @@ div#custom_total table {
 }
 
 .task-block{
-    margin-top: 2em;
+    margin-bottom: 2em;
 }
 
 .issue-tittle{
     border-bottom: 1px solid;
     font-size: 18px !important;
+    margin-bottom: 2em;
 }
 
 .hours_part_block{
     // padding-left: 1em;
     margin-top: 2em;
+}
+
+.hours_part_tecnique{
+    font-size: 15px !important;
+    margin-bottom: 2em;
 }

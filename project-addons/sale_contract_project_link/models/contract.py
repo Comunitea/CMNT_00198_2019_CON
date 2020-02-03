@@ -113,7 +113,7 @@ class ContractContract(models.Model):
                 "recurring_next_date": wzd_date + relativedelta(days=1)})
         return invoices
     
-       # FIX!! OVERWRITE PORQUE EL MODULO DE SALE_CONTRACT_INVOICING NO
+    # FIX!! OVERWRITE PORQUE EL MODULO DE SALE_CONTRACT_INVOICING NO
     # TIENE EN CUENTA QUE ES API MULTI, TODO PR A OCA
     # @api.multi
     def _recurring_create_invoice(self, date_ref=False):
@@ -169,6 +169,25 @@ class ContractContract(models.Model):
                 'default_is_issue': True,
             }
         }
+    
+    # OVERWRITE API MULTI BUG
+    @api.multi
+    def recurring_create_invoice(self):
+        """
+        This method triggers the creation of the next invoices of the contracts
+        even if their next invoicing date is in the future.
+        """
+        invoice = self._recurring_create_invoice()
+        for inv in invoice:
+            inv.message_post(
+                body=_(
+                    'Contract manually invoiced: '
+                    '<a href="#" data-oe-model="%s" data-oe-id="%s">Invoice'
+                    '</a>'
+                )
+                % (inv._name, inv.id)
+            )
+        return invoice
     
 class ContractLine(models.Model):
     _inherit = "contract.line"
