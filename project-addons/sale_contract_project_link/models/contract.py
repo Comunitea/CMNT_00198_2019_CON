@@ -170,7 +170,8 @@ class ContractContract(models.Model):
             }
         }
     
-    # OVERWRITE API MULTI BUG
+    # OVERWRITE API MULTI
+    # si hacemos la accion de servidor pueden venir mas de uno.
     @api.multi
     def recurring_create_invoice(self):
         """
@@ -188,6 +189,21 @@ class ContractContract(models.Model):
                 % (inv._name, inv.id)
             )
         return invoice
+    
+    @api.multi
+    # OVERWRITE, NOT INVOICE TO RENE
+    def _get_lines_to_invoice(self, date_ref):
+        """
+        Sobreescrito para quitar también los cerrados.
+        Sino el cron los factura también
+        """
+        self.ensure_one()
+        return self.contract_line_ids.filtered(
+            lambda l: not l.is_canceled and
+            not l.state == 'closed'
+            and l.recurring_next_date
+            and l.recurring_next_date <= date_ref
+        )
     
 class ContractLine(models.Model):
     _inherit = "contract.line"
@@ -241,7 +257,7 @@ class ContractLine(models.Model):
 
     def _compute_next_period_date_start(self):
         """
-        Facturación variable ne contratos no recurrentes debe dar el siguinte
+        Facturación variable de contratos no recurrentes debe dar el siguinte
         inicio de período la fecha de última factura
         """
         res = super()._compute_next_period_date_start()

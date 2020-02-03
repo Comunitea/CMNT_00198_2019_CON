@@ -12,7 +12,6 @@ class ReportProjectHours(models.AbstractModel):
 
     @api.model
     def _get_report_values(self, docids, data=None):
-        # import ipdb; ipdb.set_trace()
         project_ids = data.get('project_ids')
         projects = self.env['project.project'].browse(project_ids)
 

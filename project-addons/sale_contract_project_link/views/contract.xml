@@ -50,6 +50,7 @@
     <field name="arch" type="xml">
         <filter name="not_finished" position="before">
             <filter string="Not Recurring" domain="[('no_recurring', '=', True)]" name="no_recurring"/>
+            <filter string="Recurring" domain="[('no_recurring', '=', False)]" name="recurring"/>
         </filter>
     </field>
 </record>
