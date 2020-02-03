@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-23 17:39+0000\n"
-"PO-Revision-Date: 2020-01-23 17:39+0000\n"
+"POT-Creation-Date: 2020-02-03 16:19+0000\n"
+"PO-Revision-Date: 2020-02-03 16:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_contract_project_link
-#: code:addons/sale_contract_project_link/models/contract.py:32
+#: code:addons/sale_contract_project_link/models/contract.py:34
 #: sql_constraint:contract.contract:0
 #, python-format
 msgid "Analytic account already assigned"
@@ -45,6 +45,12 @@ msgstr "Línea de contrato"
 #: model:ir.model,name:sale_contract_project_link.model_contract_line_wizard
 msgid "Contract Line Wizard"
 msgstr "Asistente Línea de contrato"
+
+#. module: sale_contract_project_link
+#: code:addons/sale_contract_project_link/models/contract.py:184
+#, python-format
+msgid "Contract manually invoiced: <a href=\"#\" data-oe-model=\"%s\" data-oe-id=\"%s\">Invoice</a>"
+msgstr "Contrato facturado manualmente: <a href=\"#\" data-oe-model=\"%s\" data-oe-id=\"%s\">Factura</a>"
 
 #. module: sale_contract_project_link
 #: model_terms:ir.ui.view,arch_db:sale_contract_project_link.view_contract_variable_invoices_wzd_form
@@ -140,7 +146,7 @@ msgid "My Issues"
 msgstr "Mis incidencias"
 
 #. module: sale_contract_project_link
-#: code:addons/sale_contract_project_link/models/contract.py:167
+#: code:addons/sale_contract_project_link/models/contract.py:234
 #, python-format
 msgid "No hay siguiente fecha de fin de periodo.                       Revise la fecha fin"
 msgstr ""
@@ -148,7 +154,7 @@ msgstr ""
 #. module: sale_contract_project_link
 #: model_terms:ir.ui.view,arch_db:sale_contract_project_link.custom_contract_contract_search_view 
 msgid "Not Recurring"
-msgstr "No tecurrente"
+msgstr "No recurrente"
 
 #. module: sale_contract_project_link
 #: model:ir.model.fields,field_description:sale_contract_project_link.field_contract_contract__no_recurring
@@ -167,7 +173,7 @@ msgid "Project"
 msgstr "Proyecto"
 
 #. module: sale_contract_project_link
-#: code:addons/sale_contract_project_link/models/contract.py:34
+#: code:addons/sale_contract_project_link/models/contract.py:36
 #: sql_constraint:contract.contract:0
 #, python-format
 msgid "Projectt already assigned"
@@ -195,19 +201,21 @@ msgid "Task Count"
 msgstr "Conteo de Tareas"
 
 #. module: sale_contract_project_link
+#: code:addons/sale_contract_project_link/models/contract.py:160
 #: model:ir.actions.act_window,name:sale_contract_project_link.act_contract_to_issue
 #: model:ir.actions.act_window,name:sale_contract_project_link.act_project_to_issue
+#, python-format
 msgid "Tasks"
 msgstr "Tareas"
 
 #. module: sale_contract_project_link
-#: code:addons/sale_contract_project_link/wizard/contract_variable_invoicing.py:28
+#: code:addons/sale_contract_project_link/wizard/contract_variable_invoicing.py:51
 #, python-format
-msgid "You can not invoice ecurrent contracts from this wizard"
+msgid "You can not invoice recurrent contracts from this wizard"
 msgstr "No puedes facturar contratos recurrentes desde este asistente"
 
 #. module: sale_contract_project_link
-#: code:addons/sale_contract_project_link/models/contract.py:83
+#: code:addons/sale_contract_project_link/models/contract.py:122
 #, python-format
 msgid "You cant invoice not recurring invoices from                 here.You mus utse the variable invoice wizard."
 msgstr "No puedes facturar contratos no recurrentes desde aquí. Porfavor usa el asistente de facturar horas contrato"
