@@ -64,7 +64,7 @@ class ReportProjectHours(models.AbstractModel):
                 report_data[p_id]['eh'] = th - project.quantity_max
         
         return {
-            'doc_ids': project.ids,
+            'doc_ids': projects.ids,
             'data': data,
             'docs': projects,
             'report_data': report_data

@@ -18,6 +18,10 @@ class Contract(models.Model):
         'Remaining Time', related='project_id.remaining_hours')
     total_discount = fields.Float(
         'Total DIscounted Time', related='project_id.total_discount')
+    period_date_start = fields.Datetime('Period Date Start',
+        related='project_id.period_date_start')
+    period_date_end = fields.Datetime('Period Date End',
+        related='project_id.period_date_end')
     
 
     @api.multi

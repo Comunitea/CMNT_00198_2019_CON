@@ -39,6 +39,8 @@
     print_report_name="(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)"
 />
 
+
+<!-- Informe de horas en período -->
  <report 
     id="action_report_hours_project"
     string="Project Hours in period"
@@ -48,6 +50,18 @@
     name="custom_documents_conecta.report_project_hours"
     menu="False"
     print_report_name="'Project Hours - %s' % (object.name)"
+/>
+
+<!-- Informe de cumplimiento SLA -->
+ <report 
+    id="action_report_sla"
+    string="Print SLA"
+    model="contract.contract" 
+    report_type="qweb-pdf"
+    file="custom_documents_conecta.report_sla" 
+    name="custom_documents_conecta.report_sla"
+    menu="False"
+    print_report_name="'SLA - %s' % (object.name)"
 />
 
 
