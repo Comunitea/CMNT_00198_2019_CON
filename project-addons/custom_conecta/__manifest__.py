@@ -29,6 +29,7 @@
         'views/sale_order_view.xml',
         'wizard/account_invoice_send.xml',
         'wizard/mail_compose_mesage.xml',
+        'data/mail_data.xml'
         ],
     'development_status': 'Beta',
     'maintainers': [
