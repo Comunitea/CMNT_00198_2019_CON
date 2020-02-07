@@ -27,6 +27,7 @@
         'views/stock_picking_view.xml',
         'views/sale_order_view.xml',
         'wizard/account_invoice_send.xml',
+        'wizard/mail_compose_mesage.xml',
         ],
     'development_status': 'Beta',
     'maintainers': [
