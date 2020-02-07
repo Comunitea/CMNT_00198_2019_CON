@@ -14,8 +14,6 @@ class AccountInvoice(models.Model):
 
         if self.state not in ('draft', 'cancel'):
             for group_name, group_method, group_data in groups:
-                if group_name in ('customer', 'portal'):
-                    continue
                 group_data['has_button_access'] = False
 
         return groups
