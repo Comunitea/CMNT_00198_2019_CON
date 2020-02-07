@@ -4,7 +4,7 @@
 from odoo import fields, models, api
 
 class MailComposer(models.TransientModel):
-    _inherit = 'mail.compose.message'
+    _inherit = 'account.invoice.send'
 
     company_id = fields.Many2one('res.company', string='Company', 
         change_default=True,
