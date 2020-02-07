@@ -13,6 +13,7 @@
         'product',
         'project',
         'stock',
+        'account',
 
         # No real dependencies
         'sale_contract_project_link', 
