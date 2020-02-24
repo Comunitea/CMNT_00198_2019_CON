@@ -114,7 +114,7 @@
                             <span>Descuento</span>
                             <t t-set="colspan" t-value="colspan+1"/>
                         </th> -->
-                        <th class="text-right cell-qty">Dto.%</th>
+                        <th class="text-right cell-disc">Dto.%</th>
                         <!-- <th class="text-right">Taxes</th> -->
                         <th class="text-right cell-total">Total</th>
                         
@@ -216,7 +216,7 @@
                             </div>
                         </div>
                         <div class="custom-row">
-                            <div class="custom-cell text-left">
+                            <div class="custom-cell-obs text-left">
                                 <span t-field="doc.company_id.sale_note"/>
                             </div>
                         </div>

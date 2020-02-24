@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-17 09:38+0000\n"
-"PO-Revision-Date: 2020-01-17 09:38+0000\n"
+"POT-Creation-Date: 2020-02-24 15:35+0000\n"
+"PO-Revision-Date: 2020-02-24 15:35+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: custom_conecta
+#: model:ir.model,name:custom_conecta.model_account_invoice_send
+msgid "Account Invoice Send"
+msgstr "Enviar Factura"
 
 #. module: custom_conecta
 #: selection:stock.picking,part_state:0
@@ -31,6 +36,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:custom_conecta.field_res_users__nima_translate
 msgid "Cod nima"
 msgstr ""
+
+#. module: custom_conecta
+#: model:ir.model.fields,field_description:custom_conecta.field_account_invoice_send__company_id
+#: model:ir.model.fields,field_description:custom_conecta.field_mail_compose_message__company_id
+msgid "Company"
+msgstr "Compañía"
 
 #. module: custom_conecta
 #: model:ir.model,name:custom_conecta.model_res_partner
@@ -59,6 +70,23 @@ msgstr "Cliente D&D"
 #: model:ir.model.fields,field_description:custom_conecta.field_res_users__date
 msgid "Date"
 msgstr "Fecha"
+
+#. module: custom_conecta
+#: model_terms:ir.ui.view,arch_db:custom_conecta.custom_view_order_form
+#: model_terms:ir.ui.view,arch_db:custom_conecta.custom_view_order_tree
+#: model_terms:ir.ui.view,arch_db:custom_conecta.custom_view_quotation_tree
+msgid "Descripción / Ref"
+msgstr ""
+
+#. module: custom_conecta
+#: model:ir.model.fields,field_description:custom_conecta.field_project_task_material__description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: custom_conecta
+#: model:ir.model,name:custom_conecta.model_mail_compose_message
+msgid "Email composition wizard"
+msgstr "Asistente de redacción de correo electrónico."
 
 #. module: custom_conecta
 #: model:ir.model.fields,field_description:custom_conecta.field_stock_picking__part_state
@@ -154,6 +182,11 @@ msgstr "Enviar factura al cliente cuando se hace un albarán en su nombre"
 #: model:ir.model.fields,field_description:custom_conecta.field_sale_order_line__supp_ref
 msgid "Supplier Reference"
 msgstr "Referencia proveedor"
+
+#. module: custom_conecta
+#: model:ir.model,name:custom_conecta.model_project_task_material
+msgid "Task Material Used"
+msgstr "Materiales usados en la tarea"
 
 #. module: custom_conecta
 #: model:ir.model.fields,field_description:custom_conecta.field_product_product__waste_type

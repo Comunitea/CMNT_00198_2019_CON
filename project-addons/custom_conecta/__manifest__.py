@@ -27,6 +27,7 @@
         'views/product_template_view.xml',
         'views/stock_picking_view.xml',
         'views/sale_order_view.xml',
+        'views/project_task_material_view.xml',
         'wizard/account_invoice_send.xml',
         'wizard/mail_compose_mesage.xml',
         'data/mail_data.xml'

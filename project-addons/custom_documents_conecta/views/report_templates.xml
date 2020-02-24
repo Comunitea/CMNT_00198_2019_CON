@@ -54,12 +54,11 @@
                 </div>
                 <div class="col-6">
                     <div class="my-invoice-text" >
-                    <!-- <div t-if="o._name=='account.invoice'" class="my-invoice-text" > -->
                         <span t-field="company.invoice_text"/>
                     </div>
                 </div>
-                <div class="col-2 text-right">
-                    <img t-if="company.logo_footer_rigth" t-att-src="image_data_uri(company.logo_footer_rigth)" alt="Logo"/>
+                <div class="col-3 text-right">
+                    <img t-if="company.logo_footer_rigth" t-att-src="image_data_uri(company.logo_footer_rigth)" alt="Logo2"/>
                 </div>
             </div>
         </div>
@@ -89,7 +88,7 @@
         <h3>
             <span class="color-custom-blue">Aviso legal y Observaciones:</span>
         </h3>
-        <p>
+        <p class="lopd_text_p">
         <span class="lopd_text" t-field="doc.company_id.lopd_text"/>
         </p>
         <div class="col-12 text-center">

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+
+<record id="custom_view_project_task_form_material" model="ir.ui.view">
+    <field name="name">project.task.form.material</field>
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project_task_material.view_project_task_form_material"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='material_ids']//field[@name='quantity']" position="after">
+            <field name="description"/>
+        </xpath>
+    </field>
+</record>
+
+</odoo>

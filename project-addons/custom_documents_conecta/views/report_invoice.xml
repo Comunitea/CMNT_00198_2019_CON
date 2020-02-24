@@ -114,7 +114,7 @@
                         <th class="text-right cell-qty">Cantidad</th>
                         <th class="text-right cell-price">Precio Ud.</th>
                         <!-- <th t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line"> -->
-                        <th class="text-right cell-dic">Dto.%</th>
+                        <th class="text-right cell-disc">Dto.%</th>
                         <!-- <th class="text-right">Taxes</th> -->
                         <th class="text-right cell-total">Total</th>
                     </tr>
