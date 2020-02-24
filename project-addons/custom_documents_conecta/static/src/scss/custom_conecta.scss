@@ -240,3 +240,50 @@ div#custom_total table {
     margin-bottom: 0.5em;
     margin-top: 1em;
 }
+
+
+// ***************************************************************************
+// SLA REPORT
+// ***************************************************************************
+.tittle-block{
+    margin-top: 1em;
+}
+.contract-name{
+    border: 1px solid;
+    font-size: 15px;
+}
+.table-tittle{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.custom-th-sla{
+    display: table-row;
+    background-color: #153d66;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+}
+
+.text-sla{
+    margin-top: 1em;
+    font-size: 17px;
+}
+.custom-table-sla{
+    width: 100%;
+    border: none !important;
+    // font-size:12px;
+    thead{
+        border: 0px;
+        color: white;
+        text-align: center;
+        // font-size: 11px;
+        background-color: #153d66;
+    }
+    tr{
+        border-bottom: 1px solid;
+    }
+    td{
+        border:none !important;
+    }
+}

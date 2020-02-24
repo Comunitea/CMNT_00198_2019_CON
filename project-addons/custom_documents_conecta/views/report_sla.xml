@@ -12,14 +12,100 @@
 <template id="report_sla_document">
     <t t-call="custom_documents_conecta.custom_external_layout">
         <div class="page custom_document_conecta">
-            <div class="row text-center">
-                <div class="col-7">
+            <t t-set="contract_dic" t-value="report_data[doc]"/>
+            <div class="row">
+                <div class="col-12 text-center">
                     <h3>
                         Resumen de cumplimiento de SLA
                     </h3>
                 </div>
+            </div>
+
+            <div class="row tittle-block">
+                <div class="col-7 contract-name">
+                    <strong><span t-esc="doc.name"/></strong>
+                </div>
+                <div class="col-5">
+                    <strong>
+                        Periodo:
+                    </strong>
+                    <span t-if="contract_dic['date_start']" t-esc="contract_dic['date_start']"/>
+                    <span t-if="contract_dic['date_end']">a</span>
+                    <span t-if="contract_dic['date_end']" t-esc="contract_dic['date_end']"/>
+                </div>
+            </div>
+
+            <div class="row table-tittle">
+                <strong>Resumen de las incidencias</strong>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <div class="custom-table">
+                        <div class="custom-th-sla">
+                            <div class="custom-th-cell">
+                                Nº incidencias totales
+                            </div>
+                        </div>
+                        <div class="custom-row text-center">
+                            <span t-esc="contract_dic['n_issues']"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">    
+                    <div class="custom-table">
+                        <div class="custom-th-sla">
+                            <div class="custom-th-cell">
+                                Nº incidencias cumplidas
+                            </div>
+                        </div>
+                        <div class="custom-row text-center">
+                            <span t-esc="contract_dic['n_archived']"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="custom-table">
+                        <div class="custom-th-sla">
+                            <div class="custom-th-cell">
+                                Porcentaje cumplidas
+                            </div>
+                        </div>
+                        <div class="custom-row text-center">
+                            <span t-esc="contract_dic['archived_percent']"/> %
+                        </div>
+                    </div>    
+                </div>
+            </div>
+
+            <div class="row text-sla">
+                <t t-set="limit" t-value="doc.warn_percent * 100"/>
+                El % de cumplimiento es del  <span t-esc="contract_dic['archived_percent']"/> %, por lo tanto <span t-if="contract_dic['archived_percent'] &lt; limit">no</span> se ha cumplido el nivel de acuerdo de servicio contratado (SLA)
+            </div>
+
+             <div class="row table-tittle">
+                <strong>Incidencias fuera de tiempo SLA</strong>
+            </div>
+
+            <div class="row list-row text-center">
+                <table class="custom-table-sla">
+                    <thead>
+                        <th class="text-center">Numero incidencia</th>
+                        <th class="text-center">Tº Respuesta</th>
+                        <th class="text-center">Tº Resolución</th>
+                    </thead>
+                    <tbody class="sale_tbody">
+                         <t t-foreach="contract_dic['fail_tasks']" t-as="task_dic">
+                            <tr>
+                                <td class="text-center"><span t-esc="task_dic['id']"/></td>
+                                <td class="text-center"><span t-esc="task_dic['response']"/></td>
+                                <td class="text-center"><span t-esc="task_dic['resolution']"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
     </t>
 </template>
 

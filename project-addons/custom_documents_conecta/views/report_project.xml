@@ -89,7 +89,7 @@
                                     <div class="col-6 text-right">
                                     Horas excedidas:
                                     </div>
-                                    <div class="col-6 text.center">
+                                    <div class="col-6 text-center">
                                         <span t-esc="project_dic['eh']"/>
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@
                                     <div class="col-6 text-right">
                                     <strong>Total:</strong>
                                     </div>
-                                    <div class="col-6 text.center">
+                                    <div class="col-6 text-center">
                                         <strong><span t-esc="project_dic['th']"/></strong>
                                     </div>
                                 </div>
