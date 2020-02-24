@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="group_project_external_assigned" model="res.groups">
+        <field name="name">Assigned only</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record model="ir.rule" id="group_project_external_assigned">
+        <field name="name">Project:Only asigned users</field>
+        <field name="model_id" ref="project.model_project_project"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('group_project_external_assigned'))]"/>
+    </record>
+
+</odoo>
