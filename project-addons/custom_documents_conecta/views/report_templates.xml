@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-6">
                     <div class="my-invoice-text" >
-                        <span t-field="company.invoice_text"/>
+                        <span t-if="o._name== 'account.invoice'" t-field="company.invoice_text"/>
                     </div>
                 </div>
                 <div class="col-3 text-right">
