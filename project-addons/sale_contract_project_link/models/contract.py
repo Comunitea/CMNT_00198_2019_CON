@@ -205,6 +205,62 @@ class ContractContract(models.Model):
             and l.recurring_next_date <= date_ref
         )
     
+    # OTRO FIX PARA PORUQE AL IR EL NEW SIN COMPAÑÍA, 
+    # ENTRA EN EL ONCHANGE DE ACCOUNT_PAYMENT_PARTNER CON LA FACTURA SIN 
+    # COMPAÑÍA, AL HACER EL CUSTOMER_payment_mode CON FORCE COMPANY A FALSE
+    # DEVUELVE LA COMPAÑÍA 1, Y SERÁ ERROR DE PERMISOS
+    @api.multi
+    def _prepare_invoice(self, date_invoice, journal=None):
+        self.ensure_one()
+        if not journal:
+            journal = (
+                self.journal_id
+                if self.journal_id.type == self.contract_type
+                else self.env['account.journal'].search(
+                    [
+                        ('type', '=', self.contract_type),
+                        ('company_id', '=', self.company_id.id),
+                    ],
+                    limit=1,
+                )
+            )
+        if not journal:
+            raise ValidationError(
+                _("Please define a %s journal for the company '%s'.")
+                % (self.contract_type, self.company_id.name or '')
+            )
+        currency = (
+            self.pricelist_id.currency_id
+            or self.partner_id.property_product_pricelist.currency_id
+            or self.company_id.currency_id
+        )
+        invoice_type = 'out_invoice'
+        if self.contract_type == 'purchase':
+            invoice_type = 'in_invoice'
+        vinvoice = self.env['account.invoice'].with_context(
+            force_company=self.company_id.id,
+        ).new({
+            'partner_id': self.invoice_partner_id.id,
+            'type': invoice_type,
+            'company_id': self.company_id.id,  # ESTE ES EL FIX
+        })
+        vinvoice._onchange_partner_id()
+        invoice_vals = vinvoice._convert_to_write(vinvoice._cache)
+        invoice_vals.update({
+            'name': self.code,
+            'currency_id': currency.id,
+            'date_invoice': date_invoice,
+            'journal_id': journal.id,
+            'origin': self.name,
+            'company_id': self.company_id.id,
+            'user_id': self.user_id.id,
+        })
+        if self.payment_term_id:
+            invoice_vals['payment_term_id'] = self.payment_term_id.id
+        if self.fiscal_position_id:
+            invoice_vals['fiscal_position_id'] = self.fiscal_position_id.id
+        return invoice_vals
+    
 class ContractLine(models.Model):
     _inherit = "contract.line"
 
