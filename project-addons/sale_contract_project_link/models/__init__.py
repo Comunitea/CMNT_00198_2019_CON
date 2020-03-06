@@ -4,3 +4,4 @@ from . import sale
 from . import project_task
 from . import contract
 from . import project_project
+from . import product
