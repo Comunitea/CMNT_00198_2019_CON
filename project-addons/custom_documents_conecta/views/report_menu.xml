@@ -64,5 +64,18 @@
     print_report_name="'SLA - %s' % (object.name)"
 />
 
+<!-- Informe de cumplimiento SLA -->
+ <report 
+    id="action_report_picking"
+    string="Print Picking"
+    model="stock.picking" 
+    report_type="qweb-pdf"
+    file="custom_documents_conecta.custom_report_picking" 
+    name="custom_documents_conecta.custom_report_picking"
+    menu="True"
+    print_report_name="'Picking - %s' % (object.name)"
+/>
+
+
 
 </odoo>

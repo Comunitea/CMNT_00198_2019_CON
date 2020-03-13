@@ -22,6 +22,7 @@
         'views/report_templates.xml',
         'views/sale_report_templates.xml',
         'views/report_invoice.xml',
+        'views/report_stock.xml',
         'views/report_project.xml',
         'views/report_sla.xml',
         'views/res_company_views.xml',

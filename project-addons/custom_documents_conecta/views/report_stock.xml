@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<odoo>
+
+
+
+<template id="report_picking_document_custom">
+    <t t-call="custom_documents_conecta.custom_external_layout">
+        <t t-set="doc" t-value="o.with_context(lang=o.partner_id.lang)" /> 
+        <h4>
+            <span>Albaran</span>
+        </h4>
+        <div class="page custom_document_conecta">
+            <div class="oe_structure"/>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="custom-table">
+                                <div class="custom-th">
+                                    <div class="custom-th-cell">
+                                        Nº Factura
+                                    </div>
+                                </div>
+                                <div class="custom-row">
+                                    <div class="custom-cell">
+                                        <span t-field="doc.name"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="custom-table">
+                                <div class="custom-th">
+                                    <div class="custom-th-cell">
+                                        Fecha
+                                    </div>
+                                </div>
+                                <div class="custom-row">
+                                    <div t-if="doc.date_done" class="custom-cell">
+                                        <span t-esc="doc.date_done.strftime('%d-%m-%Y')"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="custom-table">
+                        <div class="custom-th">
+                            <div class="custom-th-cell">
+                                Datos del cliente
+                            </div>
+                        </div>
+                        <div class="custom-row">
+                            <div class="custom-customer-cell">
+                                <p t-if="doc.partner_id.name">     <span t-field="doc.partner_id.name"/></p>
+                                <p t-if="doc.partner_id.street">   <span t-field="doc.partner_id.street"/></p>
+                                <p t-if="doc.partner_id.city">     <span t-field="doc.partner_id.city"/></p>
+                                <p t-if="doc.partner_id.zip">      <span>C.P:   </span> <span t-field="doc.partner_id.zip"/></p>
+                                <p t-if="doc.partner_id.vat">      <span>CIF:   </span> <span t-field="doc.partner_id.vat"/></p>
+                                <p t-if="doc.partner_id.phone">    <span>Tel:   </span> <span t-field="doc.partner_id.phone"/></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row custom_end" name="observations">
+            <div class="col-6">
+                <div class="custom-table">
+                    <div class="custom-th">
+                        <div class="custom-th-cell">
+                            Observaciones
+                        </div>
+                    </div>
+                    <div class="custom-row">
+                        <div class="custom-cell-obs text-left">
+                            <span t-field="doc.company_id.sale_note"/>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-1">
+
+            </div>
+            <div class="col-5">
+                <div class="custom-table">
+                    <div class="custom-th">
+                        <div class="custom-th-cell">
+                            Conformidad de recepción
+                        </div>
+                    </div>
+                    <div class="custom-row">
+                        <div class="custom-cell-sign">
+                            Firma y sello
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+          
+
+        <div class="page" style="page-break-before:always;">
+            <t t-call="custom_documents_conecta.custom_lopd_text_template">
+            </t>
+        </div>
+    </t>
+</template>
+
+
+
+
+<template id="custom_report_picking">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-set="lang" t-value="o.partner_id.lang"/>
+            <t t-call="custom_documents_conecta.report_picking_document_custom" t-lang="lang"/>
+        </t>
+    </t>
+</template>
+
+</odoo>
