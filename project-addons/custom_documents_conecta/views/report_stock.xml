@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <odoo>
 
-
-
 <template id="report_picking_document_custom">
     <t t-call="custom_documents_conecta.custom_external_layout">
         <t t-set="doc" t-value="o.with_context(lang=o.partner_id.lang)" /> 
@@ -19,7 +17,7 @@
                             <div class="custom-table">
                                 <div class="custom-th">
                                     <div class="custom-th-cell">
-                                        Nº Factura
+                                        Nº Albaran
                                     </div>
                                 </div>
                                 <div class="custom-row">
@@ -65,37 +63,117 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row custom_end" name="observations">
-            <div class="col-6">
-                <div class="custom-table">
-                    <div class="custom-th">
-                        <div class="custom-th-cell">
-                            Observaciones
-                        </div>
-                    </div>
-                    <div class="custom-row">
-                        <div class="custom-cell-obs text-left">
-                            <span t-field="doc.company_id.sale_note"/>
-                        </div>
+
+            <table class="custom-table-full" t-if="o.move_line_ids">
+                <t t-set="has_barcode" t-value="any([move_ids_without_package.product_id and move_ids_without_package.product_id.sudo().barcode or move_ids_without_package.package_id for move_ids_without_package in o.move_line_ids])"/>
+                <t t-set="has_serial_number" t-value="o.move_line_ids.filtered(lambda ml: ml.lot_id or ml.lot_name)" groups="stock.group_production_lot"/>
+                <thead>
+                    <tr>
+                        <th t-if="has_serial_number"  width="45%" class="text-left">Producto</th>
+                        <th t-if="not has_serial_number" width="60%" class="text-left">Producto</th>
+                        <th class="text-right cell-qty">Cantidad</th>
+                        <th width="15%" class="text-center" t-if="has_serial_number">Numero de serie</th>
+                        <th t-if="o.valued" class="text-right cell-price">Precio Ud.</th>
+                        <th t-if="o.valued" class="text-right cell-disc">Dto.%</th>
+                        <th t-if="o.valued" class="text-right cell-total">Total</th>
+                    
+                    
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="o.move_ids_without_package.sorted(key=lambda m: m.product_id.id)" t-as="move">
+                        <t t-foreach="move.move_line_ids.sorted(key=lambda ml: ml.location_id.id)" t-as="ml">
+                            <tr>
+                                <td class="text-left">
+                                    <span t-field="ml.product_id.display_name"/><br/>
+                                    <span t-field="ml.product_id.description_pickingout"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-if="o.state != 'done'" t-field="ml.product_uom_qty"/>
+                                    <span t-if="o.state == 'done'" t-field="ml.qty_done"/>
+                                    <!-- <span t-field="ml.product_uom_id" groups="uom.group_uom"/> -->
+                                </td>
+                                <td class="text-center" t-if="has_serial_number">
+                                    <span t-field="ml.lot_id.name"/>
+                                </td>
+                                <td t-if="o.valued" class="text-right">
+                                    <span t-field="ml.sale_price_unit"/>
+                                </td>
+                                <td t-if="o.valued" class="text-right">
+                                    <span t-field="ml.sale_discount"/>
+                                </td>
+                                <td t-if="o.valued" class="text-right">
+                                    <span t-field="ml.sale_price_subtotal"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </t>
+                    </tbody>
+            </table>
+
+             <div t-if="o.valued" class="clearfix">
+                <div id="custom_total" class="row" name="custom_total">     
+                    <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                        <table class="table table-sm">
+                            <tr class="o_subtotal" style="">
+                                <td><strong>Subtotal</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_untaxed"/>
+                                </td>
+                            </tr>
+                            <tr class="o_total">
+                                <td><strong>Total impuestos</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_tax"/>
+                                </td>
+                            </tr>
+                            <tr class="o_total">
+                                <td><strong>Total</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_total"/>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-
             </div>
-            <div class="col-1">
 
-            </div>
-            <div class="col-5">
-                <div class="custom-table">
-                    <div class="custom-th">
-                        <div class="custom-th-cell">
-                            Conformidad de recepción
+
+
+
+
+            <div class="row custom_end" name="observations">
+                <div class="col-6">
+                    <div class="custom-table">
+                        <div class="custom-th">
+                            <div class="custom-th-cell">
+                                Observaciones
+                            </div>
+                        </div>
+                        <div class="custom-row">
+                            <div class="custom-cell text-left">
+                                <span t-field="o.note"/>
+                            </div>
                         </div>
                     </div>
-                    <div class="custom-row">
-                        <div class="custom-cell-sign">
-                            Firma y sello
+
+                </div>
+                <div class="col-1">
+
+                </div>
+                <div class="col-5">
+                    <div class="custom-table">
+                        <div class="custom-th">
+                            <div class="custom-th-cell">
+                                Conformidad de recepción
+                            </div>
+                        </div>
+                        <div class="custom-row">
+                            <div class="custom-cell-sign">
+                                Nombre, Firma y sello
+                            </div>
                         </div>
                     </div>
                 </div>

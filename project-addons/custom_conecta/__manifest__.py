@@ -19,7 +19,8 @@
         'sale_contract_project_link', 
         'custom_sla',
         'project_task_material',
-        'project_task_default_stage'
+        'project_task_default_stage',
+        'stock_picking_report_valued',
     ],
     'data': [
         'security/ir.model.access.csv',
