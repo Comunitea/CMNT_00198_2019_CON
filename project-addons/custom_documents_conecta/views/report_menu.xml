@@ -76,6 +76,27 @@
     print_report_name="'Picking - %s' % (object.name)"
 />
 
+<report
+    string="Picking Operations"
+    id="stock.action_report_picking"
+    model="stock.picking"
+    report_type="qweb-pdf"
+    name="stock.report_picking"
+    file="stock.report_picking_operations"
+    print_report_name="'Picking Operations - %s - %s' % (object.partner_id.name or '', object.name)"
+    menu="False"
+/>
+<report
+    string="Delivery Slip"
+    id="stock.action_report_delivery"
+    model="stock.picking"
+    report_type="qweb-pdf"
+    name="stock.report_deliveryslip"
+    file="stock.report_deliveryslip"
+    print_report_name="'Delivery Slip - %s - %s' % (object.partner_id.name or '', object.name)"
+    menu="False"
+/>
+
 
 
 </odoo>

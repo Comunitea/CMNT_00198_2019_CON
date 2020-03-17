@@ -5,3 +5,4 @@ from . import stock_picking
 from . import product_template
 from . import sale
 from . import project_task
+from . import account_invoice

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 16:15+0000\n"
-"PO-Revision-Date: 2020-02-03 16:15+0000\n"
+"POT-Creation-Date: 2020-03-17 17:41+0000\n"
+"PO-Revision-Date: 2020-03-17 17:41+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: custom_documents_conecta
-#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_project_hours_document
-msgid "<br/>\n"
-"                                        <strong>Horas descontadas:</strong>"
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_sla_document
+msgid "%, por lo tanto"
 msgstr ""
 
 #. module: custom_documents_conecta
@@ -27,14 +26,21 @@ msgid "<span class=\"color-custom-blue\">Aviso legal y Observaciones:</span>"
 msgstr ""
 
 #. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_picking_document_custom
+msgid "<span>Albaran</span>"
+msgstr ""
+
+#. module: custom_documents_conecta
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_custom_saleorder
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_invoice_document_custom
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_picking_document_custom
 msgid "<span>C.P:   </span>"
 msgstr ""
 
 #. module: custom_documents_conecta
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_custom_saleorder
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_invoice_document_custom
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_picking_document_custom
 msgid "<span>CIF:   </span>"
 msgstr ""
 
@@ -51,6 +57,7 @@ msgstr ""
 #. module: custom_documents_conecta
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_custom_saleorder
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_invoice_document_custom
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_picking_document_custom
 msgid "<span>Tel:   </span>"
 msgstr ""
 
@@ -66,8 +73,25 @@ msgid "<strong class=\"mr16\">Subtotal</strong>"
 msgstr ""
 
 #. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_sla_document
+msgid "<strong>\n"
+"                        Periodo:\n"
+"                    </strong>"
+msgstr ""
+
+#. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_picking_document_custom
+msgid "<strong>Cantidad</strong>"
+msgstr ""
+
+#. module: custom_documents_conecta
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_invoice_document_custom
 msgid "<strong>Desglose de impuestos</strong>"
+msgstr ""
+
+#. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_picking_document_custom
+msgid "<strong>Dto.%</strong>"
 msgstr ""
 
 #. module: custom_documents_conecta
@@ -83,6 +107,36 @@ msgstr ""
 #. module: custom_documents_conecta
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_project_hours_document
 msgid "<strong>Horas a facturar:</strong>"
+msgstr ""
+
+#. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_project_hours_document
+msgid "<strong>Horas descontadas:</strong>"
+msgstr ""
+
+#. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_sla_document
+msgid "<strong>Incidencias fuera de tiempo SLA</strong>"
+msgstr ""
+
+#. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_picking_document_custom
+msgid "<strong>Numero de serie</strong>"
+msgstr ""
+
+#. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_picking_document_custom
+msgid "<strong>Precio Ud.</strong>"
+msgstr ""
+
+#. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_picking_document_custom
+msgid "<strong>Producto</strong>"
+msgstr ""
+
+#. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_sla_document
+msgid "<strong>Resumen de las incidencias</strong>"
 msgstr ""
 
 #. module: custom_documents_conecta
@@ -110,6 +164,7 @@ msgstr ""
 #. module: custom_documents_conecta
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_custom_saleorder
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_invoice_document_custom
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_picking_document_custom
 msgid "<strong>Total</strong>"
 msgstr ""
 
@@ -119,7 +174,8 @@ msgid "Base"
 msgstr ""
 
 #. module: custom_documents_conecta
-#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.view_print_hours_report_wzd_form
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.view_custom_print_hours_report_wzd_form
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.view_print_sla_wzd_form
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -140,44 +196,61 @@ msgid "Conforme cliente"
 msgstr ""
 
 #. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_picking_document_custom
+msgid "Conformidad de recepción"
+msgstr ""
+
+#. module: custom_documents_conecta
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_project_hours_document
 msgid "Contrato"
 msgstr ""
 
 #. module: custom_documents_conecta
 #: model:ir.model.fields,field_description:custom_documents_conecta.field_print_project_hours_wzd__create_uid
+#: model:ir.model.fields,field_description:custom_documents_conecta.field_print_sla_wzd__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: custom_documents_conecta
 #: model:ir.model.fields,field_description:custom_documents_conecta.field_print_project_hours_wzd__create_date
+#: model:ir.model.fields,field_description:custom_documents_conecta.field_print_sla_wzd__create_date
 msgid "Created on"
 msgstr "Creado el"
 
 #. module: custom_documents_conecta
 #: model:ir.model.fields,field_description:custom_documents_conecta.field_print_project_hours_wzd__date_end
+#: model:ir.model.fields,field_description:custom_documents_conecta.field_print_sla_wzd__date_end
 msgid "Date End"
 msgstr "Fecha fin"
 
 #. module: custom_documents_conecta
 #: model:ir.model.fields,field_description:custom_documents_conecta.field_print_project_hours_wzd__date_start
+#: model:ir.model.fields,field_description:custom_documents_conecta.field_print_sla_wzd__date_start
 msgid "Date Start"
 msgstr "Fecha de inicio"
 
 #. module: custom_documents_conecta
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_custom_saleorder
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_invoice_document_custom
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_picking_document_custom
 msgid "Datos del cliente"
 msgstr ""
 
 #. module: custom_documents_conecta
+#: model:ir.model.fields,field_description:custom_documents_conecta.field_res_company__sale_note
+msgid "Default Terms and Conditions"
+msgstr "Plazo y condiciones por defecto"
+
+#. module: custom_documents_conecta
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_project_hours_document
-msgid "Descripción: <br/>"
+msgid "Descripción:"
 msgstr ""
 
 #. module: custom_documents_conecta
 #: model:ir.model.fields,field_description:custom_documents_conecta.field_print_project_hours_wzd__display_name
+#: model:ir.model.fields,field_description:custom_documents_conecta.field_print_sla_wzd__display_name
 #: model:ir.model.fields,field_description:custom_documents_conecta.field_report_custom_documents_conecta_report_project_hours__display_name
+#: model:ir.model.fields,field_description:custom_documents_conecta.field_report_custom_documents_conecta_report_sla__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
@@ -185,6 +258,11 @@ msgstr "Nombre mostrado"
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_custom_saleorder
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_invoice_document_custom
 msgid "Dto.%"
+msgstr ""
+
+#. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_sla_document
+msgid "El % de cumplimiento es del"
 msgstr ""
 
 #. module: custom_documents_conecta
@@ -230,11 +308,13 @@ msgstr ""
 #. module: custom_documents_conecta
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_custom_saleorder
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_invoice_document_custom
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_picking_document_custom
 msgid "Fecha"
 msgstr ""
 
 #. module: custom_documents_conecta
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_custom_saleorder
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_picking_document_custom
 msgid "Firma y sello"
 msgstr ""
 
@@ -276,7 +356,9 @@ msgstr ""
 
 #. module: custom_documents_conecta
 #: model:ir.model.fields,field_description:custom_documents_conecta.field_print_project_hours_wzd__id
+#: model:ir.model.fields,field_description:custom_documents_conecta.field_print_sla_wzd__id
 #: model:ir.model.fields,field_description:custom_documents_conecta.field_report_custom_documents_conecta_report_project_hours__id
+#: model:ir.model.fields,field_description:custom_documents_conecta.field_report_custom_documents_conecta_report_sla__id
 msgid "ID"
 msgstr ""
 
@@ -307,17 +389,21 @@ msgstr "Texto factura pie"
 
 #. module: custom_documents_conecta
 #: model:ir.model.fields,field_description:custom_documents_conecta.field_print_project_hours_wzd____last_update
+#: model:ir.model.fields,field_description:custom_documents_conecta.field_print_sla_wzd____last_update
 #: model:ir.model.fields,field_description:custom_documents_conecta.field_report_custom_documents_conecta_report_project_hours____last_update
+#: model:ir.model.fields,field_description:custom_documents_conecta.field_report_custom_documents_conecta_report_sla____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
 #. module: custom_documents_conecta
 #: model:ir.model.fields,field_description:custom_documents_conecta.field_print_project_hours_wzd__write_uid
+#: model:ir.model.fields,field_description:custom_documents_conecta.field_print_sla_wzd__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
 #. module: custom_documents_conecta
 #: model:ir.model.fields,field_description:custom_documents_conecta.field_print_project_hours_wzd__write_date
+#: model:ir.model.fields,field_description:custom_documents_conecta.field_print_sla_wzd__write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
 
@@ -325,6 +411,11 @@ msgstr "Última actualización el"
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.custom_external_layout_conecta
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.custom_lopd_text_template
 msgid "Logo"
+msgstr ""
+
+#. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.custom_external_layout_conecta
+msgid "Logo2"
 msgstr ""
 
 #. module: custom_documents_conecta
@@ -355,7 +446,22 @@ msgstr ""
 
 #. module: custom_documents_conecta
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_project_hours_document
+msgid "Numero Tarea:"
+msgstr ""
+
+#. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_sla_document
+msgid "Numero incidencia"
+msgstr ""
+
+#. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_project_hours_document
 msgid "Numero incidencia:"
+msgstr ""
+
+#. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_picking_document_custom
+msgid "Nº Albaran"
 msgstr ""
 
 #. module: custom_documents_conecta
@@ -369,7 +475,18 @@ msgid "Nº cuenta para ingresos"
 msgstr ""
 
 #. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_sla_document
+msgid "Nº incidencias cumplidas"
+msgstr ""
+
+#. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_sla_document
+msgid "Nº incidencias totales"
+msgstr ""
+
+#. module: custom_documents_conecta
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_custom_saleorder
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_picking_document_custom
 msgid "Observaciones"
 msgstr ""
 
@@ -409,24 +526,51 @@ msgid "Período:"
 msgstr ""
 
 #. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_sla_document
+msgid "Porcentaje cumplidas"
+msgstr ""
+
+#. module: custom_documents_conecta
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_custom_saleorder
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_invoice_document_custom
 msgid "Precio Ud."
 msgstr ""
 
 #. module: custom_documents_conecta
+#: model:ir.actions.report,name:custom_documents_conecta.action_report_picking
+msgid "Print Picking"
+msgstr "Imprimir albarán"
+
+#. module: custom_documents_conecta
+#: model:ir.actions.report,name:custom_documents_conecta.action_report_sla
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.view_print_sla_wzd_form
+msgid "Print SLA"
+msgstr "Imprimir SLA"
+
+#. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.view_print_sla_wzd_form
+msgid "Print SLA in period"
+msgstr "Imprimir SLA en período"
+
+#. module: custom_documents_conecta
+#: model:ir.actions.act_window,name:custom_documents_conecta.action_print_sla_wzd
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.view_print_sla_wzd_form
+msgid "Print SLA period"
+msgstr "Imprimir SLA en período"
+
+#. module: custom_documents_conecta
 #: model:ir.actions.act_window,name:custom_documents_conecta.action_print_hours_report_wzd
-#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.view_print_hours_report_wzd_form
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.view_custom_print_hours_report_wzd_form
 msgid "Print hours in period"
 msgstr "Imprimir horas en período"
 
 #. module: custom_documents_conecta
-#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.view_print_hours_report_wzd_form
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.view_custom_print_hours_report_wzd_form
 msgid "Print report"
 msgstr ""
 
 #. module: custom_documents_conecta
-#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.view_print_hours_report_wzd_form
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.view_custom_print_hours_report_wzd_form
 msgid "Print work hourts in period"
 msgstr "Imprimir horas en período"
 
@@ -462,8 +606,8 @@ msgid "Resumen de actuaciones de soporte técnico"
 msgstr ""
 
 #. module: custom_documents_conecta
-#: model:ir.model.fields,field_description:custom_documents_conecta.field_res_company__sale_note
-msgid "Sales Observations"
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_sla_document
+msgid "Resumen de cumplimiento de SLA"
 msgstr ""
 
 #. module: custom_documents_conecta
@@ -488,6 +632,16 @@ msgid "Total:"
 msgstr ""
 
 #. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_sla_document
+msgid "Tº Resolución"
+msgstr ""
+
+#. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_sla_document
+msgid "Tº Respuesta"
+msgstr ""
+
+#. module: custom_documents_conecta
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_project_hours_document
 msgid "Técnico:"
 msgstr ""
@@ -498,12 +652,23 @@ msgid "Título Incidencia:"
 msgstr ""
 
 #. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_project_hours_document
+msgid "Título Tarea:"
+msgstr ""
+
+#. module: custom_documents_conecta
 #: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_invoice_document_custom
 msgid "Vencimientos"
 msgstr ""
 
 #. module: custom_documents_conecta
-#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.view_print_hours_report_wzd_form
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_sla_document
+msgid "no"
+msgstr ""
+
+#. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.view_custom_print_hours_report_wzd_form
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.view_print_sla_wzd_form
 msgid "or"
 msgstr "o"
 
@@ -513,7 +678,22 @@ msgid "print.project.hours.wzd"
 msgstr ""
 
 #. module: custom_documents_conecta
+#: model:ir.model,name:custom_documents_conecta.model_print_sla_wzd
+msgid "print.sla.wzd"
+msgstr ""
+
+#. module: custom_documents_conecta
 #: model:ir.model,name:custom_documents_conecta.model_report_custom_documents_conecta_report_project_hours
 msgid "report.custom_documents_conecta.report_project_hours"
+msgstr ""
+
+#. module: custom_documents_conecta
+#: model:ir.model,name:custom_documents_conecta.model_report_custom_documents_conecta_report_sla
+msgid "report.custom_documents_conecta.report_sla"
+msgstr ""
+
+#. module: custom_documents_conecta
+#: model_terms:ir.ui.view,arch_db:custom_documents_conecta.report_sla_document
+msgid "se ha cumplido el nivel de acuerdo de servicio contratado (SLA)"
 msgstr ""
 
