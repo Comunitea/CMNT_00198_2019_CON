@@ -16,7 +16,8 @@
         'web',
         'account_due_dates_str',
         'custom_timecontrol_dates',
-        'custom_sla'
+        'custom_sla',
+        'account_invoice_production_lot'
     ],
     'data': [
         'views/report_templates.xml',
