@@ -128,8 +128,36 @@
                         <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
 
                         <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
+                            
+                        <t t-if="not line.display_type and lots and line.product_id.tracking == 'lot'" name="account_invoice_line_lot" groups="stock.group_production_lot">
+                            <tr>
+                                <td colspan="99">
+                                    <div class="row ml-1">
+                                        <div class="col">
+                                            <b class="font-italic">Serial numbers</b>
+                                        </div>
+                                    </div>
+                                    <t t-foreach="lots" t-as="lot">
+                                        <div class="row ml-1 mt-1">
+                                            <div class="col">
+                                                <span t-esc="lot[0]"/> (<span t-esc="lot[1]"/>)
+                                            </div>
+                                        </div>
+                                    </t>
+                                </td>
+                            </tr>
+                        </t>
+                            
                             <t t-if="not line.display_type" name="account_invoice_line_accountable">
-                                <td name="account_invoice_line_name"><span t-field="line.name"/></td>
+                                <td name="account_invoice_line_name">
+                                    <span t-field="line.name"/>
+                                    <t groups="stock.group_production_lot">
+                                        <t t-set="lots" t-value="line.lots_grouped_by_quantity().items()"/>
+                                        <t t-if="lots and line.product_id.tracking == 'serial'">
+                                            S/N: <span t-esc="', '.join([x[0] for x in lots])"/>
+                                        </t>
+                                    </t>
+                                </td>
                                 <td class="text-right">
                                     <span t-esc="int(line.quantity)"/>
                                     <!-- <span t-field="line.uom_id"  groups="uom.group_uom"/> -->
