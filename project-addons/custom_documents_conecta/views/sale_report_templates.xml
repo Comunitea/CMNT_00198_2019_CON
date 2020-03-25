@@ -103,7 +103,7 @@
                 </div>
             </div>
             <t t-set="display_discount" t-value="any([l.discount for l in doc.order_line])"/>
-            <table class="custom-table-full">
+            <table class="custom-table-full table table-sm">
                 <thead>
                     <tr>
                         <t t-set="colspan" t-value="5"/>

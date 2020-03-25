@@ -65,7 +65,7 @@
             </div>
 
 
-            <table class="custom-table-full" t-if="o.move_line_ids">
+            <table class="custom-table-full table table-sm" t-if="o.move_line_ids">
                 <t t-set="has_barcode" t-value="any([move_ids_without_package.product_id and move_ids_without_package.product_id.sudo().barcode or move_ids_without_package.package_id for move_ids_without_package in o.move_line_ids])"/>
                 <t t-set="has_serial_number" t-value="o.move_line_ids.filtered(lambda ml: ml.lot_id or ml.lot_name)" groups="stock.group_production_lot"/>
                 <thead>
@@ -83,12 +83,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <t t-foreach="o.move_ids_without_package.sorted(key=lambda m: m.product_id.id)" t-as="move">
-                        <t t-foreach="move.move_line_ids.sorted(key=lambda ml: ml.location_id.id)" t-as="ml">
+                    <t t-foreach="o.move_ids_without_package" t-as="move">
+                        <t t-foreach="move.move_line_ids" t-as="ml">
                             <tr>
                                 <td class="text-left">
-                                    <span t-field="ml.product_id.display_name"/><br/>
-                                    <span t-field="ml.product_id.description_pickingout"/>
+                                    <span t-if="move.sale_line_id and move.sale_line_id.name" t-field="move.sale_line_id.name"/><br/>
+                                    <span  t-if="not move.sale_line_id or (move.sale_line_id and not move.sale_line_id.name)" t-field="ml.product_id.display_name"/>
                                 </td>
                                 <td class="text-right">
                                     <span t-if="o.state != 'done'" t-field="ml.product_uom_qty"/>

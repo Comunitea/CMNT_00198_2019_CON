@@ -106,7 +106,7 @@
 
             <!-- TABLA LÍNEAS -->
             <t t-set="display_discount" t-value="any([l.discount for l in o.invoice_line_ids])"/>
-            <table class="custom-table-full" name="invoice_line_table">
+            <table class="custom-table-full table table-sm" name="invoice_line_table">
                 <thead>
                     <tr>
                         <t t-set="colspan" t-value="6"/>
