@@ -159,7 +159,7 @@
                                     </t>
                                 </td>
                                 <td class="text-right">
-                                    <span t-esc="int(line.quantity)"/>
+                                    <span t-field="line.quantity" t-options='{"widget": "float", "precision": 2}'/>
                                     <!-- <span t-field="line.uom_id"  groups="uom.group_uom"/> -->
                                 </td>
                                 <td class="d-none"><span t-field="line.origin"/></td>
