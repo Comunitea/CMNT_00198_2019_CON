@@ -12,4 +12,49 @@
     </field>
 </record>
 
+<!-- project.task inherit kanban view -->
+<record id="custom_conecta_view_task_kanban" model="ir.ui.view">
+    <field name="name">custom_conecta_view_task_kanban</field>
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project.view_task_kanban"/>
+    <field name="arch" type="xml">
+        <field name="color" position="after">
+            <field name="create_date"/>
+            <field name="is_issue"/>
+        </field>
+
+        <!-- Añado fecha de creación y si es incidencia o no -->
+         <xpath expr="//div[hasclass('o_kanban_record_body')]//div[@t-if='record.displayed_image_id.value']" position="after">
+            <div>
+                <field name="create_date"  t-options="{'format': 'dd/MM/yyyy'}"/>
+                <t t-if="record.is_issue.raw_value">
+                    <span role="alert"><i class="fa fa-info-circle" role="img" aria-label="Blacklist" title="Is Issue"></i></span>
+                </t>
+            </div>
+        </xpath>
+
+        <!-- Mostrar horas efectivas -->
+        <div class="oe_kanban_bottom_left" position="inside">
+            <t t-if="record.effective_hours">
+                <div t-att-class="'oe_kanban_align badge'" title="Total hours">
+                    <field name="effective_hours" widget="float_time"/>
+                </div>
+            </t>
+        </div>
+    </field>
+</record>
+
+<!-- solo si lo hago store -->
+    <record id="project_task_search_custom_conecta" model="ir.ui.view">
+        <field name="name">project.task.search.sla</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <!-- Inciedencias que pasan dos días desde su fecha de creación -->
+            <filter name="my_tasks" position="after">
+                <filter string="+2 days issues" name="od_imm" domain="[('is_issue', '=', True), ('create_date','&lt;', ((context_today()-datetime.timedelta(days=2)).strftime('%Y-%m-%d') ))]"/>
+            </filter>     
+        </field>
+    </record>
+
 </odoo>

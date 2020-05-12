@@ -22,7 +22,6 @@
                 <field name="is_issue" />
                 <field name="contract_id" />
             </field>
-            
         </field>
     </record>
 
@@ -37,11 +36,13 @@
             </field>
             <filter name="stage" position="after">
                     <filter name="contract" string="Contract" context="{'group_by':'contract_id'}"/>
-                </filter>
+            </filter>
 
-                <filter name="my_tasks" position="after">
-                    <filter string="My Issues" name="my_issues" domain="[('is_issue', '=', True)]"/>
-                </filter>            
+            <filter name="my_tasks" position="after">
+                <filter string="My Issues" name="my_issues" domain="[('is_issue', '=', True)]"/>
+
+                <filter string="+2 days issues" name="od_imm" domain="[('is_issue', '=', True), ('create_date','&lt;', ((context_today()-datetime.timedelta(days=2)).strftime('%Y-%m-%d') ))]"/>
+            </filter>     
         </field>
     </record>
 

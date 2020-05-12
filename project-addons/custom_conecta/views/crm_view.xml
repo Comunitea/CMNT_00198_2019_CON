@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!-- Añado fecha creación y corrogo el bug de que no se muestran etieuqtas -->
+    <record id="custom_crm_case_kanban_view_leads " model="ir.ui.view">
+        <field name="name">crm.lead.inherit.view.kanban</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
+        <field name="arch" type="xml">
+            <field name="activity_ids" position="after">
+                <field name="tag_ids"/>
+                <field name="create_date"/>
+            </field>
+
+            <xpath expr="//div[hasclass('oe_kanban_content')]/div[1]" position="after">
+                <div>
+                    <strong class="o_kanban_record_title"><field name="create_date"/></strong>
+                </div>
+            </xpath>
+
+
+            <xpath expr="//div[hasclass('oe_kanban_content')]//field[@name='tag_ids']" position="replace">
+                <div>
+                    <field name="tag_ids" widget="many2many_tags"/>
+                </div>
+            </xpath>
+            
+        </field>
+    </record>
+
+</odoo>
