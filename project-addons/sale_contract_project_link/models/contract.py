@@ -84,11 +84,11 @@ class ContractContract(models.Model):
         if not date_ref:
             date_ref = fields.Date.context_today(self)
 
-            param = self.env.ref(
-                'sale_contract_project_link.contract_invoice_days_before')
-            if param and param.value:
-                days = int(param.value)
-                date_ref = date_ref + datetime.timedelta(days=days)
+        param = self.env.ref(
+            'sale_contract_project_link.contract_invoice_days_before')
+        if param and param.value:
+            days = int(param.value)
+            date_ref = date_ref + datetime.timedelta(days=days)
 
         domain.extend([
             ('recurring_next_date', '<=', date_ref),
