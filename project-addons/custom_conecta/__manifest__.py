@@ -15,6 +15,8 @@
         'stock',
         'account',
         'crm',
+        'sale_order_revision',
+        'sale_order_type',
 
         # No real dependencies
         'sale_contract_project_link', 
