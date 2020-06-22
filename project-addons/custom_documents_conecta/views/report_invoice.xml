@@ -268,17 +268,31 @@
             </div>
             
             <div class="payment-info">
-                <div t-if="doc.partner_bank_id.acc_number != False" class="row payment-info">
+                <!-- <div t-if="doc.partner_bank_id.acc_number != False" class="row payment-info"> -->
+                <div if="o.payment_mode_id and o.payment_mode_id.show_bank_account != 'no'" class="row payment-info">
                     <div class="col-6 offset-6">
                         <div class="custom-table">
                             <div class="custom-th">
                                 <div class="custom-th-cell">
-                                    Nº cuenta para ingresos
+                                    Nnº cuenta para ingresos
                                 </div>
                             </div>
                             <div class="custom-row">
-                                <div t-if="doc.payment_mode_id" class="custom-cell">
-                                    <span t-field="doc.partner_bank_id.acc_number"/>
+                                <div class="custom-cell">
+                                    <p t-foreach="o.partner_banks_to_show()" t-as="partner_bank">
+                                        <!-- <t t-if="partner_bank.bank_id">
+                                            <t t-esc="partner_bank.bank_id.name + ('' if not partner_bank.bank_id.bic else ' (' + partner_bank.bank_id.bic + ')')" />
+                                        </t> -->
+                                        <t t-if="o.payment_mode_id.show_bank_account == 'full'">
+                                            <span t-field="partner_bank.acc_number"/>
+                                        </t>
+                                        <t t-elif="o.payment_mode_id.show_bank_account == 'first'">
+                                            <span t-esc="partner_bank.acc_number[:o.payment_mode_id.show_bank_account_chars] + '*' * (len(partner_bank.acc_number) - o.payment_mode_id.show_bank_account_chars)"/>
+                                        </t>
+                                        <t t-elif="o.payment_mode_id.show_bank_account == 'last'">
+                                            <span t-esc="'*' * (len(partner_bank.acc_number) - o.payment_mode_id.show_bank_account_chars) + partner_bank.acc_number[-o.payment_mode_id.show_bank_account_chars:]"/>
+                                        </t>
+                                    </p>
                                 </div>
                             </div>
                         </div>
