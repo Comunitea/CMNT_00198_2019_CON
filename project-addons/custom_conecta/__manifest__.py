@@ -17,6 +17,7 @@
         'crm',
         'sale_order_revision',
         'sale_order_type',
+        'account_financial_report',
 
         # No real dependencies
         'sale_contract_project_link', 
