@@ -10,6 +10,14 @@
             <field name="supp_ref"/>
         </xpath>
 
+        <!-- Ocultar etiqueta análitica por referencia provvedor -->
+        <xpath expr="//field[@name='order_line']/tree//field[@name='analytic_tag_ids']" position="before">
+            <field name="supp_ref"/>
+        </xpath>
+        <xpath expr="//field[@name='order_line']/tree//field[@name='analytic_tag_ids']" position="attributes">
+            <attribute name="invisible">True</attribute>
+        </xpath>
+
         <field name="client_order_ref" position="replace">
         </field>
         <field name="validity_date" position="after">
