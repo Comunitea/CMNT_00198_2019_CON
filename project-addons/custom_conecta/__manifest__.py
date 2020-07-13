@@ -18,6 +18,7 @@
         'sale_order_revision',
         'sale_order_type',
         'account_financial_report',
+        'purchase',
 
         # No real dependencies
         'sale_contract_project_link', 
@@ -33,6 +34,7 @@
         'views/product_template_view.xml',
         'views/stock_picking_view.xml',
         'views/sale_order_view.xml',
+        'views/purchase_order_view.xml',
         'views/project_task_material_view.xml',
         'views/account_view.xml',
         'views/crm_view.xml',
