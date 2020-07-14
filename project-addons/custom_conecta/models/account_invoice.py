@@ -7,22 +7,14 @@ from odoo import fields, models, api
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
-    # Esto provoca error al crear factura proveedor
-    # @api.model
-    # def _default_journal(self):
-    #     res = super()._default_journal()
-    #     inv_type = self._context.get('type', 'out_invoice')
-    #     if inv_type in ('in_invoice', 'in_refund'):
-    #         return False
-    #     return res
-    
-    # @api.model
-    # def _default_currency(self):
-    #     journal = self._default_journal()
-    #     res = False
-    #     if journal:
-    #         res = journal.currency_id or journal.company_id.currency_id
-    #     else:
-    #         self.env.user.company_id.currency_id
-    #     return res
-        
+    def _prepare_invoice_line_from_po_line(self, line):
+        res = super()._prepare_invoice_line_from_po_line(line)
+        if line.customer_id:
+            res['customer_id'] = line.customer_id.id
+        return res
+
+
+class AccountInvoiceLine(models.Model):
+    _inherit = "account.invoice.line"
+
+    customer_id = fields.Many2one('res.partner', 'Cliente')
