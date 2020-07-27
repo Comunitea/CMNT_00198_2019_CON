@@ -85,9 +85,10 @@
     </template>
 
     <template id="custom_lopd_text_template">
-        <h3>
+        <!-- Mas de una tag <h*> por página falla: https://github.com/odoo/odoo/issues/35191 -->
+        <div style="font-size:30px; font-weight: normal;">
             <span class="color-custom-blue">Aviso legal y Observaciones:</span>
-        </h3>
+        </div>
         <p class="lopd_text_p">
         <span class="lopd_text" t-field="doc.company_id.lopd_text"/>
         </p>
