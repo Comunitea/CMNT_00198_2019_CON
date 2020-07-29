@@ -38,13 +38,13 @@ class ReportProjectHours(models.AbstractModel):
             }
             domain.append(('project_id', '=', project.id))
             a_lines = self.env['account.analytic.line'].search(domain)
-            
             for line in a_lines:
+                task = line.task_id
+                if line.id in [3740, 3745, 3746]:
                 task_type = 'issues'
-                if not line.task_id.is_issue:
+                if not task.is_issue:
                     task_type = 'tasks'
-                if line.task_id not in report_data[project][task_type]:
-                    task = line.task_id
+                if task not in report_data[project][task_type]:
                     report_data[p_id][task_type][task] = {
                         'lines': [],
                         'total': 0.0
