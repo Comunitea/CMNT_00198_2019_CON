@@ -116,7 +116,7 @@
                         Título Incidencia: <span t-esc="task_obj.name"/>
                     </div>
                     <div class="issue-container">
-                        <div class="row">
+                        <div class="row" style="page-break-inside:avoid;">
                             <div class="col-4">
                                 Numero incidencia: <div class="span-box"><span t-esc="task_obj.id"/></div>
                             </div>
