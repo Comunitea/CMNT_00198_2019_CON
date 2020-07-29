@@ -40,7 +40,6 @@ class ReportProjectHours(models.AbstractModel):
             a_lines = self.env['account.analytic.line'].search(domain)
             for line in a_lines:
                 task = line.task_id
-                if line.id in [3740, 3745, 3746]:
                 task_type = 'issues'
                 if not task.is_issue:
                     task_type = 'tasks'
