@@ -72,7 +72,7 @@ class ProjectTask(models.Model):
     # is_issue = fields.Boolean('Es incidencia')
     issue_date = fields.Datetime(
         string="Issue date", required=True,
-        default=fields.Datetime.now())
+        default=fields.Datetime.now)
     notice_person = fields.Char(string="Notice person", required=True)
     priority = fields.Selection(
         [('0','No process'), ('1','Low'), ('2','Mid'), ('3','Hight')], 
