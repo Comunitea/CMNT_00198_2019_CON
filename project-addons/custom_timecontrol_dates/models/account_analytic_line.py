@@ -48,7 +48,7 @@ class AccountAnalyticLine(models.Model):
                 else:
                     res = round(2 * hours_floor + 0.499) / 2
             
-            elif self.work_type in ['remoto', 'telefonico', 'taller', 'cmax']:
+            elif self.work_type in ['remoto', 'telefonico', 'taller', 'cmax', 'lopd', 'interno']:
                 if(decimals == 0):
                     res = math.floor(hours)
                 elif(decimals > 0 and decimals <= 0.25):
