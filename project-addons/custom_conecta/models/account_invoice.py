@@ -13,6 +13,15 @@ class AccountInvoice(models.Model):
             res['customer_id'] = line.customer_id.id
         return res
 
+    @api.onchange('partner_id', 'company_id')
+    def _onchange_partner_id(self):
+        if not self.company_id and self._context.get('active_model') and  \
+            self._context.get('active_model') == 'sale.order':
+            sale = self.env['sale.order'].browse(self._context['active_id'])
+            self.company_id = sale.company_id
+        res = super(AccountInvoice, self)._onchange_partner_id()
+        
+        return res
 
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"

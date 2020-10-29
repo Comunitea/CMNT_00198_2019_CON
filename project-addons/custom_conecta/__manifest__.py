@@ -18,6 +18,7 @@
         'sale_order_revision',
         'sale_order_type',
         'account_financial_report',
+        'account_payment_partner',
         'purchase',
 
         # No real dependencies
