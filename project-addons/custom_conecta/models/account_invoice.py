@@ -16,6 +16,11 @@ class AccountInvoice(models.Model):
     @api.onchange('partner_id', 'company_id')
     def _onchange_partner_id(self):
         """
+        Al entrar aqui desde el .new del modulo sale en _prepare_invoice
+        odoo no lo crea con compañía y el mñodulo de account_payment_partner
+        no será capaz de obtener el modo de pago correcto.
+        Esto también pasa en contratos, solo que ahí tengo pisado el
+        _prepare_invoice entero. Que no es lo ideal.
         """
         if not self.company_id and self._context.get('active_model') and  \
             self._context.get('active_model') == 'sale.order':
