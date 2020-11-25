@@ -22,7 +22,8 @@ class SaleOrder(models.Model):
         """
         if default is None:
             default = {}
-        if self.type_id and self.type_id.sequence_id:
+        if self.type_id and self.type_id.sequence_id and \
+                'old_revision_ids' not in default:
             default['name'] = self.type_id.sequence_id.next_by_id()
             default['revision_number'] = 0
             default['unrevisioned_name'] = default['name']
