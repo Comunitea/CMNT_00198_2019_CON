@@ -19,11 +19,10 @@ class ProjectProject(models.Model):
 
             if project.period_date_start:
                 domain += [
-                    ('date_start', '>=', 
-                     project.period_date_start.strftime('%d-%m-%Y'))]
+                    ('date_start', '>=', project.period_date_start)]
             if project.period_date_start:
                 domain += [
-                    ('date_end', '<=', project.period_date_end.strftime('%d-%m-%Y'))]
+                    ('date_end', '<=', project.period_date_end)]
             a_lines = self.env['account.analytic.line'].search(domain)
             hours_quantity = \
                 round(sum(a_lines.mapped('unit_amount')), 2)
