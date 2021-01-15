@@ -33,14 +33,14 @@ class ProjectProject(models.Model):
                 project.quantity_max - hours_quantity
             project.total_discount = hours_discount
     
-    @api.multi
-    def _get_discounted(self):
-        for project in self:
-            domain = [
-                ('task_id', 'in', project.task_ids.ids)]
-            lines = self.env['account.analytic.line'].search(domain)
-            tot_disc = round(sum(lines.mapped('discount')), 2)
-            project.total_discount = tot_disc
+    # @api.multi
+    # def _get_discounted(self):
+    #     for project in self:
+    #         domain = [
+    #             ('task_id', 'in', project.task_ids.ids)]
+    #         lines = self.env['account.analytic.line'].search(domain)
+    #         tot_disc = round(sum(lines.mapped('discount')), 2)
+    #         project.total_discount = tot_disc
     
     period_date_start = fields.Datetime('Period Date Start')
     period_date_end = fields.Datetime('Period Date End')
@@ -50,7 +50,7 @@ class ProjectProject(models.Model):
     remaining_hours = fields.Float(
         'Remaining Time', compute='_hours_quantity')
     total_discount = fields.Float(
-        'Total Discounted Time', compute='_get_discounted')
+        'Total Discounted Time', compute='_hours_quantity')
     
     def write(self, vals):
         res = super().write(vals)
