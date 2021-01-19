@@ -13,6 +13,13 @@ class SaleOrderLine(models.Model):
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    # Por error al cambiar modo de pago en cliente,
+    # buscaba sale.orders de otra compañia, necesitamos relate_sudo y 
+    # compute_sudo
+    commercial_partner_id = fields.Many2one(
+        related='partner_id.commercial_partner_id', string='Commercial Entity',
+        store=True, readonly=True, compute_sudo=True, related_sudo=True)
+
     @api.multi
     @api.returns('self', lambda value: value.id)
     def copy(self, default=None):

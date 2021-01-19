@@ -20,6 +20,7 @@
         'account_financial_report',
         'account_payment_partner',
         'purchase',
+        'account_banking_mandate_sale',
 
         # No real dependencies
         'sale_contract_project_link', 
