@@ -208,7 +208,7 @@
             </div>
 
             <div class="row custom_end" name="observations">
-                <div class="col-6">
+                <div class="col-8">
                     <div class="custom-table">
                         <div class="custom-th">
                             <div class="custom-th-cell">
@@ -223,10 +223,7 @@
                     </div>
 
                 </div>
-                <div class="col-1">
-
-                </div>
-                <div class="col-5">
+                <div class="col-4">
                     <div class="custom-table">
                         <div class="custom-th">
                             <div class="custom-th-cell">
