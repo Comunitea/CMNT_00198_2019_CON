@@ -17,7 +17,8 @@
         'account_due_dates_str',
         'custom_timecontrol_dates',
         'custom_sla',
-        'account_invoice_production_lot'
+        'account_invoice_production_lot',
+        'hr_timesheet',
     ],
     'data': [
         'views/report_templates.xml',
@@ -27,6 +28,7 @@
         'views/report_project.xml',
         'views/report_sla.xml',
         'views/res_company_views.xml',
+        'views/hr_timesheet_templates.xml',
         'views/report_menu.xml',
         'wizard/print_hours_report_view.xml',
         'wizard/print_sla_wzd_view.xml',
