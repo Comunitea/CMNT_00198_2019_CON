@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<odoo>
+
+<template id="hr_timesheet.report_timesheet">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-set="show_task" t-value="bool(docs.mapped('task_id'))"/>
+                <t t-set="show_project" t-value="len(docs.mapped('project_id')) > 1"/>
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>
+                                <span>Detalle del parte de horas</span>
+                            </h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table" style="table-layout:fixed !important;font-size:11px !important;">
+                                <thead>
+                                    <tr>
+                                        <th style="width:12% !important;"><span>Fecha inicio</span></th>
+                                        <th style="width:12% !important;"><span>Fecha fin</span></th>
+                                        <th style="width:15% !important;"><span>Responsable</span></th>
+                                        <th style="width:51% !important;"><span>Descripción</span></th>
+                                        <th style="width:10% !important;" class="text-right"><span>Tiempo</span></th>
+                                        <!-- <th><span>Date Start</span></th>
+                                        <th><span>Date End</span></th>
+                                        <th><span>Responsible</span></th>
+                                        <th><span>Description</span></th> -->
+                                        <!-- <th t-if="show_task"><t t-if="show_project">Project - </t>Task</th> -->
+                                        <!-- <th class="text-right"><span>Time</span></th> -->
+                                    </tr>
+                               </thead>
+                               <tbody>
+                                    <tr t-foreach="docs" t-as="l" style="page-break-inside: avoid">
+                                        <td>
+                                           <!-- <span t-field="l.date"/> -->
+                                           <span t-esc="l.date_start.strftime('%d-%m-%Y')"/>
+                                        </td>
+                                        <td>
+                                           <span t-esc="l.date_end.strftime('%d-%m-%Y')"/>
+                                        </td>
+                                        <td>
+                                           <span t-field="l.user_id.partner_id.name"/>
+                                           <span t-if="not l.user_id.partner_id.name" t-field="l.employee_id"/>
+                                        </td>
+                                        <td >
+                                            <span t-field="l.name" t-options="{'widget': 'text'}"/>
+                                        </td>
+                                        <!-- <td t-if="show_task">
+                                            <t t-if="show_project"><span t-field="l.project_id.sudo().name"/></t>
+                                            <t t-if="show_project and l.task_id"> - </t>
+                                            <t t-if="l.task_id"><span t-field="l.task_id.sudo().name"/></t>
+                                        </td> -->
+                                        <td class="text-right">
+                                            <span t-field="l.unit_amount" t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td />
+                                        <td />
+                                        <td t-if="show_task"/>
+                                        <td class="text-right"><strong>Total</strong></td>
+                                        <td class="text-right"><strong t-esc="sum(docs.mapped('unit_amount'))" t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>
