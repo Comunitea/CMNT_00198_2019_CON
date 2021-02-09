@@ -1,0 +1,109 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* custom_contract_commission
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-09 12:34+0000\n"
+"PO-Revision-Date: 2021-02-09 12:34+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: custom_contract_commission
+#: model:ir.model.fields,field_description:custom_contract_commission.field_contract_line_agent__agent
+msgid "Agent"
+msgstr "Agente"
+
+#. module: custom_contract_commission
+#: model_terms:ir.ui.view,arch_db:custom_contract_commission.contract_line_agent_tree
+msgid "Agents"
+msgstr "Agentes"
+
+#. module: custom_contract_commission
+#: model:ir.model.fields,field_description:custom_contract_commission.field_contract_line__agents
+msgid "Agents & commissions"
+msgstr "Agentes y comisiones"
+
+#. module: custom_contract_commission
+#: model:ir.model.fields,help:custom_contract_commission.field_contract_line__agents
+msgid "Agents/Commissions related to the invoice line."
+msgstr "Agentes/comisiones relacionadas con la línea de contrato."
+
+#. module: custom_contract_commission
+#: model:ir.model.fields,field_description:custom_contract_commission.field_contract_line_agent__commission
+#: model_terms:ir.ui.view,arch_db:custom_contract_commission.contract_line_form_view_commission
+#: model_terms:ir.ui.view,arch_db:custom_contract_commission.custom_contract_line_form_view_add_commission
+msgid "Commission"
+msgstr "Comisión"
+
+#. module: custom_contract_commission
+#: model:ir.model.fields,field_description:custom_contract_commission.field_contract_line_agent__amount
+msgid "Commission Amount"
+msgstr "Importe de comisión"
+
+#. module: custom_contract_commission
+#: model:ir.model,name:custom_contract_commission.model_contract_line
+msgid "Contract Line"
+msgstr "Línea de contrato"
+
+#. module: custom_contract_commission
+#: model:ir.model.fields,field_description:custom_contract_commission.field_contract_line__purchase_price
+msgid "Cost"
+msgstr "Coste"
+
+#. module: custom_contract_commission
+#: model:ir.model.fields,field_description:custom_contract_commission.field_contract_line_agent__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: custom_contract_commission
+#: model:ir.model.fields,field_description:custom_contract_commission.field_contract_line_agent__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: custom_contract_commission
+#: model:ir.model.fields,field_description:custom_contract_commission.field_contract_line_agent__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: custom_contract_commission
+#: model:ir.model.fields,field_description:custom_contract_commission.field_contract_line_agent__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: custom_contract_commission
+#: model:ir.model.fields,field_description:custom_contract_commission.field_contract_line_agent__id
+msgid "ID"
+msgstr ""
+
+#. module: custom_contract_commission
+#: model:ir.model.fields,field_description:custom_contract_commission.field_contract_line_agent____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: custom_contract_commission
+#: model:ir.model.fields,field_description:custom_contract_commission.field_contract_line_agent__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: custom_contract_commission
+#: model:ir.model.fields,field_description:custom_contract_commission.field_contract_line_agent__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: custom_contract_commission
+#: model:ir.model.fields,field_description:custom_contract_commission.field_contract_line_agent__object_id
+msgid "Parent"
+msgstr "Padre"
+
+#. module: custom_contract_commission
+#: model:ir.model,name:custom_contract_commission.model_contract_line_agent
+msgid "contract.line.agent"
+msgstr ""
+

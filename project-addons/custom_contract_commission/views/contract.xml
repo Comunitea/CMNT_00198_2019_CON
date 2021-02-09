@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<odoo>
+
+<!-- contract.contract inherit form view -->
+<record id="contract_contract_form_view_commision" model="ir.ui.view">
+    <field name="name">contract_contract_form_view_commission</field>
+    <field name="model">contract.contract</field>
+    <field name="inherit_id" ref="contract.contract_contract_form_view"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='contract_line_ids']/tree//field[@name='is_canceled']" position="after">
+            <field name="commission_free" invisible="1"/>
+            <field name="purchase_price" invisible="0"/>
+            <field name="agents" invisible="1"/>
+            <button name="button_edit_agents"
+                    icon="fa-users"
+                    type="object"
+                    attrs="{'invisible': [('commission_free', '=', True)]}"
+            />
+            <field name="commission_status"/>
+        </xpath>
+    </field>
+</record>
+
+
+<!-- Contract.line form view -->
+<record id="contract_line_form_view_commission" model="ir.ui.view">
+    <field name="name">custom_contract_line_form_view.commission</field>
+    <field name="model">contract.line</field>
+    <field name="inherit_id" ref="contract.contract_line_form_view"/>
+    <field name="arch" type="xml">
+        <group name="recurrence_info" position="after">
+            <group name="commission" string="Commission">
+                <field name="purchase_price"/>
+                <field name="commission_free"/>
+                <field name="agents"
+                       attrs="{'readonly': [('commission_free', '=', True)]}"/>
+            </group>
+        </group>
+    </field>
+</record>
+
+<!-- CUSTOM SLA CONTRACT VIEWS -->
+<record id="custom_contract_line_form_view_add_commission" model="ir.ui.view">
+    <field name="name">custom_contract_line_form_view.commission</field>
+    <field name="model">contract.line</field>
+    <field name="inherit_id" ref="custom_sla.custom_contract_line_tree_view"/>
+    <field name="arch" type="xml">
+         <field name="date_end" position="after">
+            <field name="purchase_price"/>
+            <field name="agents" invisible="0"/>
+            <button name="button_edit_agents"
+                    icon="fa-users"
+                    type="object"/>
+        </field>
+    </field>
+</record>
+
+<record id="custom_contract_line_form_view_add_commission" model="ir.ui.view">
+    <field name="name">custom_contract_line_form_view.commission</field>
+    <field name="model">contract.line</field>
+    <field name="inherit_id" ref="custom_sla.custom_contract_line_form_view"/>
+    <field name="arch" type="xml">
+        <group name="recurrence_info" position="after">
+            <group name="commission" string="Commission">
+                <field name="purchase_price"/>
+                <field name="commission_free"/>
+                <field name="agents"
+                       attrs="{'readonly': [('commission_free', '=', True)]}"/>
+            </group>
+        </group>
+    </field>
+</record>
+
+
+<!-- This view is needed for proper visualization of the popup / embedded one2many -->
+<record id="contract_line_agent_tree" model="ir.ui.view" >
+    <field name="name">contract.line.agent.tree</field>
+    <field name="model">contract.line.agent</field>
+    <field name="arch" type="xml">
+        <tree string="Agents" editable="bottom">
+            <field name="agent"
+                    context="{'default_agent': True, 'default_customer': False, 'default_supplier': True}"
+            />
+            <field name="commission"/>
+            <field name="amount"/>
+        </tree>
+    </field>
+</record>
+
+</odoo>
