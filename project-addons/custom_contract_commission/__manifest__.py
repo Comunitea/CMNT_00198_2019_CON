@@ -18,7 +18,9 @@
     'data': [
         'security/ir.model.access.csv',
         'security/sale_commission_security.xml',
-        'views/contract.xml'
+        'wizard/recompute_commission_wzd_view.xml',
+        'views/contract.xml',
+        
     ],
     'development_status': 'Beta',
     'maintainers': [
