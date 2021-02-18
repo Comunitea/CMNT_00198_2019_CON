@@ -20,6 +20,7 @@
         'security/sale_commission_security.xml',
         'wizard/recompute_commission_wzd_view.xml',
         'views/contract.xml',
+        'views/settlement_view.xml',
         
     ],
     'development_status': 'Beta',

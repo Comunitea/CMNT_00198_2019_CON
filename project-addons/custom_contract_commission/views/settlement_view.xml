@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<odoo>
+
+<!-- contract.contract inherit form view -->
+<record id="contract_contract_form_view_commision" model="ir.ui.view">
+    <field name="name">contract_contract_form_view_commission</field>
+    <field name="model">contract.contract</field>
+    <field name="inherit_id" ref="contract.contract_contract_form_view"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='contract_line_ids']/tree//field[@name='is_canceled']" position="after">
+            <field name="commission_free" invisible="1"/>
+            <field name="purchase_price" invisible="0"/>
+            <field name="agents" invisible="1"/>
+            <button name="button_edit_agents"
+                    icon="fa-users"
+                    type="object"
+                    attrs="{'invisible': [('commission_free', '=', True)]}"
+            />
+            <field name="commission_status"/>
+        </xpath>
+    </field>
+</record>
+
+
+<!-- Contract.line form view -->
+<record id="view_settlement_form_custom" model="ir.ui.view">
+    <field name="name">sale.commission.settlement.custom</field>
+    <field name="model">sale.commission.settlement</field>
+    <field name="inherit_id" ref="sale_commission.view_settlement_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='lines']/tree/field[@name='date']" position="after">
+            <field name="partner_id"/>
+        </xpath>
+    </field>
+</record>
+
+<!-- CUSTOM SLA CONTRACT VIEWS -->
+<record id="view_settlement_line_tree_custom" model="ir.ui.view">
+    <field name="name">Settlement lines</field>
+    <field name="model">sale.commission.settlement.line</field>
+    <field name="inherit_id" ref="sale_commission.view_settlement_line_tree"/>
+    <field name="arch" type="xml">
+         <field name="agent" position="after">
+            <field name="partner_id"/>
+        </field>
+    </field>
+</record>
+
+</odoo>
