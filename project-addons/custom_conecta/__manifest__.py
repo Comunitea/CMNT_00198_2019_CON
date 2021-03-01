@@ -39,6 +39,7 @@
         'views/purchase_order_view.xml',
         'views/project_task_material_view.xml',
         'views/account_view.xml',
+        'views/res_partner_bank_view.xml',
         'views/crm_view.xml',
         'wizard/account_invoice_send.xml',
         'wizard/mail_compose_mesage.xml',
