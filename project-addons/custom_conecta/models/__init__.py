@@ -7,3 +7,4 @@ from . import sale
 from . import purchase
 from . import project_task
 from . import account_invoice
+from . import res_partner_bank
