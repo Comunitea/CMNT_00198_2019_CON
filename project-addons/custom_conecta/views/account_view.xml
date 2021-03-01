@@ -16,6 +16,20 @@
             <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='name']" position="after">
                 <field name="customer_id"/>
             </xpath>
+
+            <field name="partner_id" position="attributes">
+                <attribute name="options">{'no_create': True}</attribute>
+            </field>
+        </field>
+    </record>
+    <record id="custom_view_invoice_form_no_create" model="ir.ui.view">
+        <field name="name">custom_view_invoice_form_no_create</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="attributes">
+                <attribute name="options">{'no_create': True}</attribute>
+            </field>
         </field>
     </record>
 
