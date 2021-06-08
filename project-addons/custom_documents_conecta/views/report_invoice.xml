@@ -108,7 +108,7 @@
             <t t-set="display_discount" t-value="any([l.discount for l in o.invoice_line_ids])"/>
             <table class="custom-table-full table table-sm" name="invoice_line_table">
                 <thead>
-                    <tr>
+                    <tr style="page-break-before:always;">
                         <t t-set="colspan" t-value="6"/>
                         <th class="text-left cell-product">Producto</th>
                         <th class="text-right cell-qty">Cantidad</th>
@@ -127,10 +127,10 @@
                         <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
                         <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
 
-                        <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
+                        <tr style="page-break-before:always;" t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
                             
                         <t t-if="not line.display_type and lots and line.product_id.tracking == 'lot'" name="account_invoice_line_lot" groups="stock.group_production_lot">
-                            <tr>
+                            <tr style="page-break-before:always;">
                                 <td colspan="99">
                                     <div class="row ml-1">
                                         <div class="col">
@@ -208,7 +208,7 @@
             </table>
 
             <div class="clearfix">
-                <div id="custom_total" class="row" name="custom_total">
+                <div id="custom_total" class="row" name="custom_total" style="page-break-before:always;">
                     <div class="col-6">
                         <table class="custom-table-full" name="tax_line_table">
                             <caption class="caption-table"><strong>Desglose de impuestos</strong></caption>
@@ -274,7 +274,7 @@
                         <div class="custom-table">
                             <div class="custom-th">
                                 <div class="custom-th-cell">
-                                    Nnº cuenta para ingresos
+                                    Nº cuenta para ingresos
                                 </div>
                             </div>
                             <div class="custom-row">
