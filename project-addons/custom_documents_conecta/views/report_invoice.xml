@@ -208,7 +208,7 @@
             </table>
 
             <div class="clearfix">
-                <div id="custom_total" class="row" name="custom_total" style="page-break-before:always;">
+                <div id="custom_total" class="row" name="custom_total" style="page-break-inside:avoid;">
                     <div class="col-6">
                         <table class="custom-table-full" name="tax_line_table">
                             <caption class="caption-table"><strong>Desglose de impuestos</strong></caption>
