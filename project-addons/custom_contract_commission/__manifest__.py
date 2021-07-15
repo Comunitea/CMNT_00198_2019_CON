@@ -13,7 +13,8 @@
         'contract',
         'sale_commission',
         'sale_commission_formula',
-        'custom_sla'
+        'custom_sla',
+        'account_invoice_merge'
     ],
     'data': [
         'security/ir.model.access.csv',
