@@ -154,7 +154,6 @@ class AccountInvoice(models.Model):
                 invoice_data['date_invoice'] = date_invoice
 
             # create the new invoice
-            import ipdb; ipdb.set_trace()
             newinvoice = self.with_context(is_merge=True).create(invoice_data)
             invoices_info.update({newinvoice.id: old_ids})
             allinvoices.append(newinvoice.id)
