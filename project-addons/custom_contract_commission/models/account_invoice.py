@@ -58,6 +58,7 @@ class AccountInvoice(models.Model):
                         field_val = False
                 if (isinstance(field_val, browse_record) and
                         field != 'invoice_line_tax_ids' and
+                        field != 'agents' and
                         field != 'sale_line_ids'):
                     field_val = field_val.id
                 elif isinstance(field_val, browse_null):
@@ -153,6 +154,7 @@ class AccountInvoice(models.Model):
                 invoice_data['date_invoice'] = date_invoice
 
             # create the new invoice
+            import ipdb; ipdb.set_trace()
             newinvoice = self.with_context(is_merge=True).create(invoice_data)
             invoices_info.update({newinvoice.id: old_ids})
             allinvoices.append(newinvoice.id)
