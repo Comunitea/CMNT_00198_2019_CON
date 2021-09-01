@@ -20,7 +20,7 @@ class AccountInvoice(models.Model):
         fields = [
             'name', 'origin', 'discount', 'invoice_line_tax_ids', 'price_unit',
             'product_id', 'account_id', 'account_analytic_id',
-            'uom_id', 'agents'
+            'uom_id', 'agents', 'purchase_price'
         ]
         for field in ['sale_line_ids']:
             if field in self.env['account.invoice.line']._fields:
