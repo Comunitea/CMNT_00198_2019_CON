@@ -50,9 +50,12 @@ class ReportProjectHours(models.AbstractModel):
                     }
                 report_data[p_id][task_type][task]['lines'] += \
                     line
+                # report_data[p_id][task_type][task]['total'] += \
+                #     line.unit_amount - line.discount
                 report_data[p_id][task_type][task]['total'] += \
-                    line.unit_amount - line.discount
-                report_data[p_id]['wh'] += line.unit_amount
+                    line.work_hours - line.discount
+                # report_data[p_id]['wh'] += line.unit_amount
+                report_data[p_id]['wh'] += line.work_hours
                 report_data[p_id]['dh'] += line.discount
             
             wh = report_data[p_id]['wh']

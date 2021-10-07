@@ -26,13 +26,14 @@ class AccountAnalyticLine(models.Model):
          ('interno','Interno')], 'Work Type')
     name = fields.Text('Description')
     discount = fields.Float('Hours discount')
+    work_hours = fields.Float('Work hours')
     signature = fields.Binary('Customer signature')
     observations = fields.Text('Observations')
     sended = fields.Boolean('Sended', default=False)
 
     employee_id = fields.Many2one(default=_get_employee_id)
 
-    @api.onchange('date_start', 'date_end', 'work_type', 'discount')
+    @api.onchange('date_start', 'date_end', 'work_type', 'discount', 'work_hours')
     def _on_change_datetime(self):
         self.ensure_one()
         res = 0
@@ -61,6 +62,8 @@ class AccountAnalyticLine(models.Model):
                     res = math.floor(hours) + 1
                 else:
                     res = hours
+                    res = hours
+            self.work_hours = res
             self.unit_amount = res - self.discount
     
     @api.model

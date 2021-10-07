@@ -23,8 +23,9 @@
                         <field name="date_start" required="True"/>
                         <field name="date_end" required="True"/>
                         <field name="work_type" required="True"/>
-                        <field name="unit_amount"/>
+                        <field name="work_hours"/>
                         <field name="discount"/>
+                        <field name="unit_amount"/>
                         <field name="user_id" invisible="1"/>
                         <field name="signature" widget="screen_draw" draw_height="300" draw_width="300"/>
 
@@ -37,8 +38,9 @@
                         <field name="date_start" required="True"/>
                         <field name="date_end" required="True"/>
                         <field name="work_type" required="True"/>
-                        <field name="unit_amount"/>
+                        <field name="work_hours"/>
                         <field name="discount"/>
+                        <field name="unit_amount"/>
                         <field name="user_id"/>
                         <field name="signature" widget="screen_draw" draw_height="300" draw_width="300"/>
                         <!-- <field name="account_id"/> -->
@@ -81,8 +83,9 @@
                                 <field name="date_start" required="True"/>
                                 <field name="date_end" required="True"/>
                                 <field name="work_type" required="True"/>
+                                <field name="work_hours" widget="float_time"/>
+                                <field name="discount" widget="float_time"/>
                                 <field name="unit_amount" string="Duration" widget="float_time"/>
-                                <field name="discount"/>
                                 <field name="signature" widget="screen_draw" draw_height="300" draw_width="300"/>
                                 <!-- <field name="account_id"/> -->
                             </group>

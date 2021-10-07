@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 16:44+0000\n"
-"PO-Revision-Date: 2020-02-03 16:44+0000\n"
+"POT-Creation-Date: 2021-10-07 15:39+0000\n"
+"PO-Revision-Date: 2021-10-07 15:39+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,18 +18,18 @@ msgstr ""
 #. module: custom_timecontrol_dates
 #: model:mail.template,body_html:custom_timecontrol_dates.email_template_warn
 msgid "\n"
-"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
-"        Se ha sobrepasado el porcentaje de ${object.porcentaje_aviso} en el contrato ${object.name},        <div>\n"
+"<div style=\"font-size:13px;font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"        Se ha sobrepasado el porcentaje de ${object.porcentaje_aviso} en el contrato ${object.name},        <div style=\"font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">\n"
 "                <br>\n"
 "        </div>\n"
-"        <div>\n"
+"        <div style=\"font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">\n"
 "                Cantidad contratada: ${object.quantity_max}\n"
 "        </div>\n"
-"        <div>\n"
+"        <div style=\"font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">\n"
 "                Cantidad consumida: ${object.hours_quantity}\n"
 "        </div>\n"
-"        <br/>\n"
-"        <div>\n"
+"        <br>\n"
+"        <div style=\"font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">\n"
 "                Cantidad restante: ${object.remaining_hours}\n"
 "        </div>\n"
 "</div>\n"
@@ -172,11 +172,13 @@ msgid "Observations"
 msgstr "Observaciones"
 
 #. module: custom_timecontrol_dates
+#: model:ir.model.fields,field_description:custom_timecontrol_dates.field_contract_contract__period_date_end
 #: model:ir.model.fields,field_description:custom_timecontrol_dates.field_project_project__period_date_end
 msgid "Period Date End"
 msgstr "Fecha fin período"
 
 #. module: custom_timecontrol_dates
+#: model:ir.model.fields,field_description:custom_timecontrol_dates.field_contract_contract__period_date_start
 #: model:ir.model.fields,field_description:custom_timecontrol_dates.field_project_project__period_date_start
 msgid "Period Date Start"
 msgstr "Fecha inicio período"
@@ -274,6 +276,11 @@ msgstr "Porcentaje límite de avisos"
 #: model:ir.model.fields,field_description:custom_timecontrol_dates.field_account_analytic_line__work_type
 msgid "Work Type"
 msgstr "Tipo trabajo"
+
+#. module: custom_timecontrol_dates
+#: model:ir.model.fields,field_description:custom_timecontrol_dates.field_account_analytic_line__work_hours
+msgid "Work hours"
+msgstr "Horas trabajadas"
 
 #. module: custom_timecontrol_dates
 #: model:ir.model,name:custom_timecontrol_dates.model_excess_hours_invoice_wzd
