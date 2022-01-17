@@ -1,0 +1,58 @@
+<odoo>
+    <record id="send_grouped_invoice_view" model="ir.ui.view">
+        <field name="name">send_grouped_invoice_view</field>
+        <field name="model">send.grouped.invoice</field>
+        <field name="arch" type="xml">
+            <form>
+                <p>Do you want to send this grouped invoices?'</p>
+                <footer>
+                    <button
+                    name="confirm"
+                    string="Confirm"
+                    type="object"
+                    class="btn-primary"
+                />
+                    <button
+                    string="Cancel"
+                    class="btn-secondary"
+                    special="cancel"
+                />
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <act_window id="action_view_send_grouped_invoice_conecta"
+            multi="True"
+            key2="client_action_multi"
+            name="Send Grouped Invoice (Conecta)"
+            context="{'from_conecta': True}"
+            src_model='account.invoice'
+            res_model="send.grouped.invoice"
+            view_mode="form"
+            view_type="form"
+            target="new"/>
+
+    <act_window id="action_view_send_grouped_invoice_external"
+            multi="True"
+            key2="client_action_multi"
+            name="Send Grouped Invoice (External)"
+            context="{'from_external': True}"
+            src_model='account.invoice'
+            res_model="send.grouped.invoice"
+            view_mode="form"
+            view_type="form"
+            target="new"/>
+
+    <act_window id="action_view_send_grouped_invoice_softdil"
+            multi="True"
+            key2="client_action_multi"
+            context="{'from_softdil': True}"
+            name="Send Grouped Invoice (Softdil)"
+            src_model='account.invoice'
+            res_model="send.grouped.invoice"
+            view_mode="form"
+            view_type="form"
+            target="new"/>
+
+</odoo>
