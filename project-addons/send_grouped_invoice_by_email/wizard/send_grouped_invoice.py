@@ -80,7 +80,8 @@ class DeliveryManageWzd(models.TransientModel):
         )["value"]
         composer_id.write(values)
         composer_id.attachment_ids = [(6, 0, attachments.ids)]
-        composer_id.with_context(ctx).send_mail()
+        # composer_id.with_context(ctx).send_mail()
+
         # report_name = self._render_template(template.report_name, template.model, self.env.user.id)
         # attachments.append((report_name,data_record))
         # template.with_context(ctx).send_mail(partners.id)
@@ -89,18 +90,18 @@ class DeliveryManageWzd(models.TransientModel):
         # template.send_mail(self.id, email_values=email_values, force_send=True)
         # template.attachment_ids = [(3, data_id.id)]
         
-        # return {
-        #     'name': _('Compose Email'),
-        #     'type': 'ir.actions.act_window',
-        #     'view_type': 'form',
-        #     'view_mode': 'form',
-        #     'res_model': 'mail.compose.message',
-        #     'views': [(compose_form.id, 'form')],
-        #     'view_id': compose_form.id,
-        #     'target': 'new',
-        #     'context': ctx,
-        # }
-        return self.action_partner_show(partners)
+        return {
+            'name': _('Compose Email'),
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'mail.compose.message',
+            'views': [(compose_form.id, 'form')],
+            'view_id': compose_form.id,
+            'target': 'new',
+            'context': ctx,
+        }
+        # return self.action_partner_show(partners)
 
 
     def action_partner_show(self,partners):
