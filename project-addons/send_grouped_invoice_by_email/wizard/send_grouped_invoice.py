@@ -67,7 +67,7 @@ class DeliveryManageWzd(models.TransientModel):
                 default_template_id=template and template.id or False,
                 default_composition_mode='comment',
                 user_id=self.env.user.id,
-                # default_attachment_ids=[(6, 0, attachments.ids)]
+                default_attachment_ids=[(6, 0, attachments.ids)]
             )
         compose_form = self.env.ref(
             'mail.email_compose_message_wizard_form',

@@ -9,7 +9,7 @@
         <field name="email_from">a@a</field> -->
         <field name="subject">Facturas agrupadas (Conecta)</field>
         <field name="partner_to">${object.id}</field>
-        <field name="model_id" ref="stock.model_res_partner"/>
+        <field name="model_id" ref="base.model_res_partner"/>
         <field name="auto_delete" eval="True"/>
         <!-- <field name="report_template" ref="did_custom_documents.action_report_picking_signed"/> -->
         <!-- <field name="report_name">${(object.name or '').replace('/','_')}</field> -->
@@ -34,7 +34,7 @@
         <field name="email_from">a@a</field> -->
         <field name="subject">Facturas agrupadas (External)</field>
         <field name="partner_to">${object.id}</field>
-        <field name="model_id" ref="stock.model_res_partner"/>
+        <field name="model_id" ref="base.model_res_partner"/>
         <field name="auto_delete" eval="True"/>
         <!-- <field name="report_template" ref="did_custom_documents.action_report_picking_signed"/> -->
         <!-- <field name="report_name">${(object.name or '').replace('/','_')}</field> -->
@@ -59,7 +59,7 @@
         <field name="email_from">a@a</field> -->
         <field name="subject">Facturas agrupadas (Softdil)</field>
         <field name="partner_to">${object.id}</field>
-        <field name="model_id" ref="stock.model_res_partner"/>
+        <field name="model_id" ref="base.model_res_partner"/>
         <field name="auto_delete" eval="True"/>
         <!-- <field name="report_template" ref="did_custom_documents.action_report_picking_signed"/> -->
         <!-- <field name="report_name">${(object.name or '').replace('/','_')}</field> -->
