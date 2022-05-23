@@ -144,10 +144,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-4">
-                                        <strong>Fecha de inicio:</strong> <span t-field="line.date_start"  t-options="{'format': 'HH:MM d-m-Y'}"/>
+                                        <strong>Fecha de inicio:</strong> <span t-field="line.date_start"  t-options="{'format': 'HH:MM dd-mm-Y'}"/>
                                     </div>
                                     <div class="col-4">
-                                        <strong>Fecha de fin:</strong> <span t-field="line.date_end" t-options="{'format': 'HH:MM d-m-Y'}"/>
+                                        <strong>Fecha de fin:</strong> <span t-field="line.date_end" t-options="{'format': 'HH:MM dd-mm-Y'}"/>
                                     </div>
                                     <div class="col-4 text-right total-hours">
                                         <strong>Horas a facturar:</strong> <span t-esc="line.unit_amount"/>
