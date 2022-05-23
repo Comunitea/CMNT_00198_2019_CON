@@ -38,10 +38,10 @@
                                     <tr t-foreach="docs" t-as="l" style="page-break-inside: avoid">
                                         <td>
                                            <!-- <span t-field="l.date"/> -->
-                                           <span t-esc="l.date_start.strftime('%d-%m-%Y %H:%M')"/>
+                                           <span t-field="l.date_start" t-options="{'format': 'dd-mm-Y HH:MM'}"/>
                                         </td>
                                         <td>
-                                           <span t-esc="l.date_end.strftime('%d-%m-%Y %H:%M')"/>
+                                           <span t-field="l.date_end" t-options="{'format': 'dd-mm-Y HH:MM'}"/>
                                         </td>
                                         <td>
                                            <span t-field="l.user_id.partner_id.name"/>
