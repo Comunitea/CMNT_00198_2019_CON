@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portal_my_task" inherit_id="hr_timesheet.portal_my_task" name="My Task inherit">
+        <xpath expr="//table/thead/tr/th[last()]" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+
+        <xpath expr="//table//tr[@t-foreach='task.timesheet_ids']/td[last()]" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+    </template>
+
+    <template id="portal_my_quotations" inherit_id="sale.portal_my_quotations" name="My Quotations inherit">
+        <xpath expr="//thead/tr/th[1]" position="after">
+            <th class="text-right">Customer Reference</th>
+        </xpath>
+
+        <xpath expr="//t[@t-foreach='quotations']/tr/td[1]" position="after">
+            <td class="text-right"><span t-field="quotation.client_order_ref"/></td>
+        </xpath>
+    </template>
+
+    <template id="portal_my_orders" inherit_id="sale.portal_my_orders" name="My orders inherit">
+        <xpath expr="//thead/tr/th[1]" position="after">
+            <th class="text-right">Customer Reference</th>
+        </xpath>
+
+        <xpath expr="//t[@t-foreach='orders']/tr/td[1]" position="after">
+            <td class="text-right"><span t-field="order.client_order_ref"/></td>
+        </xpath>
+    </template>
+
+    <template id="sale_order_portal_content" inherit_id="sale.sale_order_portal_content" name="Sales Order Portal Content inherit">
+        <xpath expr="//div[@id='informations']/div[3]" position="after">
+            <div class="mb-3" t-if="sale_order.validity_date">
+                <strong>Customer Reference:</strong> <span t-field="sale_order.client_order_ref"/>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="portal_my_invoices" inherit_id="account.portal_my_invoices" name="My Invoices and Payments inherit">
+        <xpath expr="//thead/tr/th[last()]" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+
+        <xpath expr="//thead/tr/th[last()]" position="after">
+            <th class="text-right">Amount total</th>
+        </xpath>
+
+        <xpath expr="//t[@t-foreach='invoices']/tr/td[last()]" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+
+        <xpath expr="//t[@t-foreach='invoices']/tr/td[last()]" position="after">
+            <td class="text-right"><span t-esc="invoice.amount_total" t-options='{"widget": "monetary", "display_currency": invoice.currency_id}'/></td>
+        </xpath>
+    </template>
+    
+</odoo>

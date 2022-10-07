@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo>
+     <data noupdate="1">
+
+        <record id="task_stage_opened"  model="ir.config_parameter">
+            <field name="key">custom_portal_conecta.task_stage_opened</field>
+            <field name="value">8</field>
+        </record>
+
+        <record id="task_stage_closed"  model="ir.config_parameter">
+            <field name="key">custom_portal_conecta.task_stage_closed</field>
+            <field name="value">12</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,77 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* custom_portal_conecta
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-07 12:27+0000\n"
+"PO-Revision-Date: 2022-10-07 12:27+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: custom_portal_conecta
+#: model_terms:ir.ui.view,arch_db:custom_portal_conecta.sale_order_portal_content
+msgid "<strong>Customer Reference:</strong>"
+msgstr "<strong>Descripción / Ref.:</strong>"
+
+#. module: custom_portal_conecta
+#: code:addons/custom_portal_conecta/controllers/portal.py:50
+#: code:addons/custom_portal_conecta/controllers/portal.py:172
+#, python-format
+msgid "All"
+msgstr "Todas"
+
+#. module: custom_portal_conecta
+#: model_terms:ir.ui.view,arch_db:custom_portal_conecta.portal_my_invoices
+msgid "Amount total"
+msgstr "Importe factura"
+
+#. module: custom_portal_conecta
+#: code:addons/custom_portal_conecta/controllers/portal.py:52
+#, python-format
+msgid "Closed"
+msgstr "Cerradas"
+
+#. module: custom_portal_conecta
+#: model_terms:ir.ui.view,arch_db:custom_portal_conecta.portal_my_orders
+#: model_terms:ir.ui.view,arch_db:custom_portal_conecta.portal_my_quotations
+msgid "Customer Reference"
+msgstr "Descripción / Ref."
+
+#. module: custom_portal_conecta
+#: code:addons/custom_portal_conecta/controllers/portal.py:54
+#, python-format
+msgid "Is issue"
+msgstr "Incidencia"
+
+#. module: custom_portal_conecta
+#: code:addons/custom_portal_conecta/controllers/portal.py:55
+#, python-format
+msgid "Is not issue"
+msgstr "Tarea"
+
+
+#. module: custom_portal_conecta
+#: code:addons/custom_portal_conecta/controllers/portal.py:53
+#, python-format
+msgid "Non closed"
+msgstr "No Cerradas"
+
+#. module: custom_portal_conecta
+#: code:addons/custom_portal_conecta/controllers/portal.py:51
+#: code:addons/custom_portal_conecta/controllers/portal.py:174
+#, python-format
+msgid "Open"
+msgstr "Pendientes"
+
+#. module: custom_portal_conecta
+#: code:addons/custom_portal_conecta/controllers/portal.py:173
+#, python-format
+msgid "Paid"
+msgstr "Pagadas"
